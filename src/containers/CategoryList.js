@@ -1,5 +1,6 @@
 import React from 'react';
 import TestImage from '../assets/img/test.svg';
+import { Link } from 'react-router-dom';
 
 class CategoryList extends React.Component {
   constructor(props) {
@@ -21,13 +22,13 @@ class CategoryList extends React.Component {
 
   render() {
     return (
-      <div class="categoriesWrapper">
+      <div className="categoriesWrapper">
           {this.state.categories.map(p =>
             (
-              <a href="#" class="categoryItem">
+              <Link to="/expense/name" href="#" className="categoryItem">
                 <img src={TestImage} alt=""/>
                 <span>{p.name}</span>
-              </a>
+              </Link>
             )
           )}
       </div>

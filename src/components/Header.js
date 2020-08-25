@@ -3,9 +3,9 @@ import React from 'react';
 const Header = () => {
   return (
     <header>
-      <a class="buttonNav hidden" href="#"></a>
-        <span class="pageTitle">Choose expense</span>
-      <a class="buttonNav" href="#">+</a>
+      <a className="buttonNav hidden" href="#"></a>
+        <span className="pageTitle">Choose expense</span>
+      <a className="buttonNav" href="#">+</a>
     </header>
   );
 }

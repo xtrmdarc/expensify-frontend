@@ -4,8 +4,8 @@ const FooterNav = () => {
   return (
     <footer>
       <nav>
-        <a class="navItem">Add expense</a>
-        <a class="navItem">Your progress</a>
+        <a className="navItem">Add expense</a>
+        <a className="navItem">Your progress</a>
       </nav>
     </footer>
   )
