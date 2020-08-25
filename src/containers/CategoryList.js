@@ -20,12 +20,15 @@ class CategoryList extends React.Component {
 
   render() {
     return (
-      <div>
-        <ul>
+      <div class="categoriesWrapper">
           {this.state.categories.map(p =>
-            <li>{p.name}</li>
+            (
+              <a class="categoryItem">
+                <img src="" alt=""/>
+                <span>{p.name}</span>
+              </a>
+            )
           )}
-        </ul>
       </div>
     )
   }

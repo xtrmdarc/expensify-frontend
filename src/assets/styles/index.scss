@@ -4,6 +4,9 @@ html, body {
   width: 100%;
   max-width: 480px;
   margin: 0 auto;
+  position: relative;
+  height: 100vh;
+  max-height: 720px;
 }
 
 header {
@@ -27,6 +30,73 @@ header {
 
     &.hidden {
       visibility: hidden;
+    }
+  }
+}
+
+#root {
+  height: 100%;
+  & > div {
+    height: inherit;
+  }
+}
+
+.contentWrapper {
+  height: calc(100% - #{$headerHeight} - #{$footerHeight});
+  overflow-y: scroll;
+}
+
+.categoriesWrapper {
+  padding: $broadSpace;
+  background-color: rgb(243, 243, 243);
+  .categoryItem {
+    // border: 1px solid $brandColor;
+    padding: $closeSpace;
+    border-radius: 4px;;
+    height: 80px;
+    margin-top: $closeSpace;
+    display: flex;
+    align-items: center;
+    box-shadow: 1px 2px 4px rgba(80, 80, 80, 0.486);
+    background-color: $brandColor;
+    color: white;
+
+    img {
+      width: 20%;
+      background-color: $darkColor;
+      height: 20px;
+      margin-right: $closeSpace;
+    }
+    span {
+      width: 80%;
+
+      font-size: 25px;      
+    }
+  }
+
+  .categoryItem:first-child {
+    margin-top: 0;
+  }
+}
+
+footer {
+  width: 100%;
+  height: $footerHeight;
+  display: flex;
+  background-color: $darkColor;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  nav {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+
+    a {
+      width: calc(100% / 2);
+      color: white;
+      text-align: center;
     }
   }
 }
