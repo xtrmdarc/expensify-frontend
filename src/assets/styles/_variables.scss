@@ -11,16 +11,34 @@ $headerHeight: 60px;
 $footerHeight: 55px;
 $titleFont: 'Alata', sans-serif;
 $textFont: 'Poppins', sans-serif;
-
+$pageHeaderHeight: 70px;
 
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
   font-family: $textFont;
+  outline: none;
 }
 
 a {
   text-decoration: none;
   color: inherit;
+}
+
+.cta {
+  border: none;
+  padding: 8px;
+  font-size: 16px;
+}
+
+@mixin pageTitle() {
+  font-family: $titleFont;
+  font-size: 20px;
+}
+
+@mixin input() {
+  width: 100%;
+  padding: 5px;
+  margin-top: $closeSpace;
 }
