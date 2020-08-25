@@ -18,9 +18,13 @@ header {
   background-color: $brandColor;
   color: white;
   font-weight: 600;
+  box-shadow: 0 6px 4px -4px rgba(99, 99, 99, 0.7); 
+  z-index: 1000;
+  position: relative;
 
   .pageTitle {
-
+    font-family: $titleFont;
+    font-size: 20px;
   }
 
   .buttonNav {
@@ -50,27 +54,25 @@ header {
   padding: $broadSpace;
   background-color: rgb(243, 243, 243);
   .categoryItem {
-    // border: 1px solid $brandColor;
     padding: $closeSpace;
     border-radius: 4px;;
     height: 80px;
     margin-top: $closeSpace;
     display: flex;
     align-items: center;
-    box-shadow: 1px 2px 4px rgba(80, 80, 80, 0.486);
-    background-color: $brandColor;
-    color: white;
+    box-shadow: 1px 2px 4px rgba(156, 156, 156, 0.486);
+    background-color: white;
+    color: black;
 
     img {
       width: 20%;
-      background-color: $darkColor;
-      height: 20px;
+      height: 35px;
       margin-right: $closeSpace;
+      filter: invert(1);
     }
     span {
       width: 80%;
-
-      font-size: 25px;      
+      font-size: 20px;      
     }
   }
 
@@ -83,10 +85,11 @@ footer {
   width: 100%;
   height: $footerHeight;
   display: flex;
-  background-color: $darkColor;
+  background-color: $veryDarkColor;
   position: absolute;
   bottom: 0;
   left: 0;
+  
   nav {
     display: flex;
     width: 100%;
@@ -97,6 +100,7 @@ footer {
       width: calc(100% / 2);
       color: white;
       text-align: center;
+      font-family: $titleFont;
     }
   }
 }

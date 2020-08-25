@@ -1,4 +1,5 @@
 import React from 'react';
+import TestImage from '../assets/img/test.svg';
 
 class CategoryList extends React.Component {
   constructor(props) {
@@ -23,8 +24,8 @@ class CategoryList extends React.Component {
       <div class="categoriesWrapper">
           {this.state.categories.map(p =>
             (
-              <a class="categoryItem">
-                <img src="" alt=""/>
+              <a href="#" class="categoryItem">
+                <img src={TestImage} alt=""/>
                 <span>{p.name}</span>
               </a>
             )

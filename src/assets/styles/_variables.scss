@@ -1,15 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Alata&family=Poppins:wght@300;400;700&display=swap');
+
 $closeSpace: 16px;
 $broadSpace: 32px;
 $brandColor: #34B7E4;
+$brandColorLight: #B1E2F4;
 $darkColor: #598090;
+$veryDarkColor: #313943;
 $accentColor: #92E49C;
-$headerHeight: 50px;
-$footerHeight: 50px;
+$headerHeight: 60px;
+$footerHeight: 55px;
+$titleFont: 'Alata', sans-serif;
+$textFont: 'Poppins', sans-serif;
+
 
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  font-family: $textFont;
 }
 
 a {
