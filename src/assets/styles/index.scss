@@ -5,3 +5,28 @@ html, body {
   max-width: 480px;
   margin: 0 auto;
 }
+
+header {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  height: $headerHeight;
+  background-color: $brandColor;
+  color: white;
+  font-weight: 600;
+
+  .pageTitle {
+
+  }
+
+  .buttonNav {
+    display: block;
+    width: 40px;
+    text-align: center;
+
+    &.hidden {
+      visibility: hidden;
+    }
+  }
+}
