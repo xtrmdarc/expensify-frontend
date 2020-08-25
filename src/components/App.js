@@ -1,6 +1,12 @@
 import React from 'react';
+import CategoryList from '../containers/CategoryList';
 
 const App = () => {
-  return <div></div>;
+  return (
+    <div>
+      <CategoryList />
+    </div>
+    );
 }
 
+export default App;

@@ -1,6 +1,6 @@
 import React from 'react';
 
-class CategoryList extends React.component {
+class CategoryList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -9,7 +9,7 @@ class CategoryList extends React.component {
   }
 
   componentDidMount() {
-    fetch('http://localhost:3001/expense_category/index')
+    fetch('/expense_category/index')
     .then(response => {
       response.json().then( p => {
         this.setState({categories: p});
@@ -21,9 +21,11 @@ class CategoryList extends React.component {
   render() {
     return (
       <div>
-        {this.state.categories.map(p =>
-          <span>{p.name}</span> 
+        <ul>
+          {this.state.categories.map(p =>
+            <li>{p.name}</li>
           )}
+        </ul>
       </div>
     )
   }
