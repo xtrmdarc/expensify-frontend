@@ -180,7 +180,8 @@ footer {
 
     label {
       color: white;
-  
+      font-size: 14px;
+
       input[type="text"] {
         @include input();
         border: none;

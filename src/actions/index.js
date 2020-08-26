@@ -2,6 +2,7 @@ export const CHANGE_HEADER_FORMAT = 'CHANGE_HEADER_TITLE';
 export const CHANGE_ACTIVE_TAB = 'CHANGE_ACTIVE_TAB';
 export const LOAD_CATEGORIES_LIST = 'LOAD_CATEGORIES_LIST';
 export const SET_MEASURE_ITEM = 'SET_MEASURE_ITEM';
+export const LOGIN_USER = 'LOGIN_USER';
 
 export const changeHeaderTitle = (title, headerType) => {
   return {
@@ -29,5 +30,12 @@ export const setMeasureItem = measureItem => {
   return{
     type: SET_MEASURE_ITEM,
     measureItem
+  }
+}
+
+export const loginUser = user => {
+  return {
+    type: LOGIN_USER,
+    user
   }
 }
