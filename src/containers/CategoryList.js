@@ -14,18 +14,18 @@ class CategoryList extends React.Component {
     this.props.changeHeader('Choose category', 1);
   }
 
-  componentDidMount() {
-    expensifyApi.listCategories().then( p => {
-      this.setState({categories: p});
-    });
-  }
+  // componentDidMount() {
+  //   expensifyApi.listCategories().then( p => {
+  //     this.setState({categories: p});
+  //   });
+  // }
 
   render() {
     return (
       <div className="categoriesWrapper">
-          {this.state.categories.map(p =>
+          {this.props.categoriesList.map(p =>
             (
-              <CategoryItem categoryData={p} />
+              <CategoryItem key={p.name} categoryData={p} />
             )
           )}
       </div>
@@ -33,8 +33,12 @@ class CategoryList extends React.Component {
   }
 }
 
-const mapDispatchToProps = dispatch => ({
-  changeHeader: (title, headerType) => dispatch(changeHeaderTitle(title, 1)),
+const mapStateToProps = state => ({
+  categoriesList: state.categoriesList
 });
 
-export default connect(null, mapDispatchToProps)(CategoryList);
+const mapDispatchToProps = dispatch => ({
+  changeHeader: (title) => dispatch(changeHeaderTitle(title, 1)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(CategoryList);

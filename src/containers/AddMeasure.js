@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { changeHeaderTitle } from '../actions';
+import { changeHeaderTitle, setMeasureItem } from '../actions';
 import expensifyApi from '../api/expensify';
+import { withRouter } from 'react-router-dom';
 
 class AddMeasure extends React.Component {
   constructor(props) {
@@ -15,6 +16,14 @@ class AddMeasure extends React.Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
+  componentDidMount() {
+    const { id } = this.props.match.params;
+    expensifyApi.getCategoryInfo(id).then( info => {
+      this.props.setMeasureItem(info)
+      console.log(info);
+    });
+  }
+
   handleChange(e) {
     const val = e.target.value;
     const elId = e.target.id;
@@ -24,22 +33,21 @@ class AddMeasure extends React.Component {
   }
 
   handleSubmit() {
-    console.log(this.state);
     const measurementObj = {
       value: parseFloat(this.state.amountValue),
       date: this.state.dateValue,
       user_id: 1,
       ex_cat_id: 1,
     };
-    console.log(measurementObj);
     expensifyApi.createNewMeasurement(measurementObj).catch(e => console.log(e));
   }
 
   render() { 
+    const {measureItem}  = this.props;
     return ( 
       <div className="addMeasure">
         <div className="pageHeader">
-          <h2 className="pageTitle">Utility expense</h2>
+          <h2 className="pageTitle">{measureItem.name} expense</h2>
         </div>
         <div className="mainContent">
           <input id="amountValue" className="valueInput" type="text" placeholder="$0.00" onChange={this.handleChange} value={this.state.valueInput}/>
@@ -56,8 +64,13 @@ class AddMeasure extends React.Component {
   }
 }
 
-const mapDispatchToProps = dispatch => ({
-  changeHeader: (title, headerType) => dispatch(changeHeaderTitle(title, 2)),
+const mapStateToProps = state => ({
+  measureItem: state.addMeasureItem,
 });
 
-export default connect(null, mapDispatchToProps)(AddMeasure);
+const mapDispatchToProps = dispatch => ({
+  changeHeader: (title) => dispatch(changeHeaderTitle(title, 2)),
+  setMeasureItem: (measureItem) => dispatch(setMeasureItem(measureItem))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(AddMeasure));

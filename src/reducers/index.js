@@ -1,8 +1,12 @@
 import { combineReducers } from 'redux';
 import  pageNavigationReducer from './pageNavigation';
+import categoriesListReducer from './categoriesList';
+import measureItemReducer from './measureItem';
 
 const rootReducer = combineReducers({
-  pageNavigation: pageNavigationReducer
+  pageNavigation: pageNavigationReducer,
+  categoriesList: categoriesListReducer,
+  addMeasureItem: measureItemReducer,
 });
 
 export default rootReducer;

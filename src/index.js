@@ -11,7 +11,9 @@ const store = createStore(rootReducer, {
     headerTitle: '',
     headerType: 0,
     activeTab: '',
-  }
+  },
+  categoriesList: [],
+  addMeasureItem: {},
 });
 
 ReactDOM.render(

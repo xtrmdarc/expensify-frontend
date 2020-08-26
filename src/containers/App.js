@@ -5,11 +5,18 @@ import FooterNav from '../components/FooterNav';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import AddMeasure from './AddMeasure';
 import { connect } from 'react-redux';
+import { loadCategoriesList } from '../actions';
+import expensifyApi from '../api/expensify';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
-    console.log(this.props);
+  }
+
+  componentDidMount() {
+    expensifyApi.listCategories().then( p => {
+      this.props.updateCategoriesList(p)
+    });
   }
 
   render() {
@@ -39,4 +46,8 @@ const mapStateToProps = state => ({
   headerType: state.pageNavigation.headerType,
 });
 
-export default connect(mapStateToProps)(App);
+const mapDispatchToProps = dispatch => ({
+  updateCategoriesList: categories => dispatch(loadCategoriesList(categories))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
