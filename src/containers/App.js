@@ -5,7 +5,7 @@ import FooterNav from '../components/FooterNav';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import AddMeasure from './AddMeasure';
 import { connect } from 'react-redux';
-import { loadCategoriesList } from '../actions';
+import { loadCategoriesList, loadProgress } from '../actions';
 import expensifyApi from '../api/expensify';
 import Login from './Login';
 import Progress from './Progress';
@@ -16,8 +16,12 @@ class App extends React.Component {
   }
 
   componentDidMount() {
+    const { user } = this.props;
     expensifyApi.listCategories().then( p => {
       this.props.updateCategoriesList(p)
+    });
+    expensifyApi.getProgress(user.id).then( p => {
+      this.props.loadProgress(p)
     });
   }
 
@@ -36,7 +40,7 @@ class App extends React.Component {
                 <Route exact path="/expense/:id">
                   <AddMeasure updateTitle={this.updateTitle}  />
                 </Route>
-                <Route>
+                <Route exact path="/progress/:id">
                   <Progress  />
                 </Route>
               </Switch>
@@ -56,7 +60,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  updateCategoriesList: categories => dispatch(loadCategoriesList(categories))
+  updateCategoriesList: categories => dispatch(loadCategoriesList(categories)),
+  loadProgress: progress => dispatch(loadProgress(progress)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

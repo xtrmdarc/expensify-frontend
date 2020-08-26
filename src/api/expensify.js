@@ -43,7 +43,13 @@ const expensifyApi = (() => {
     return data;
   }
 
-  return { listCategories, createNewMeasurement, getCategoryInfo, loginUser };
+  const getProgress = async (userId) => {
+    const response = await fetch(`/progress/${userId}`)
+    const data = await response.json();
+    return data;
+  }
+
+  return { listCategories, createNewMeasurement, getCategoryInfo, loginUser, getProgress };
 
 })();
 

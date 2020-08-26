@@ -18,6 +18,7 @@ const store = createStore(rootReducer, {
   user: {
 
   },
+  progress: [],
 });
 
 ReactDOM.render(

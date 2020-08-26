@@ -16,7 +16,7 @@ class CategoryList extends React.Component {
 
   componentDidMount() {
     const { setActiveTab } = this.props;
-    setActiveTab('list')
+    setActiveTab('list');
   }
 
   render() {
