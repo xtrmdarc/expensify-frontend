@@ -21,6 +21,7 @@ header {
   box-shadow: 0 3px 4px -1px rgba(99, 99, 99, 0.7); 
   z-index: 1000;
   position: relative;
+  padding: 0 $closeSpace;
 
   .pageTitle {
     font-family: $titleFont;

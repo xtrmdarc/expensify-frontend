@@ -16,7 +16,7 @@ class App extends React.Component {
     return (
       <div>
         <Router>
-          <Header headerTitle={this.props.headerTitle} />
+          <Header headerTitle={this.props.headerTitle} headerType={this.props.headerType}/>
             <div className="contentWrapper">
               <Switch>
                 <Route exact path="/">
@@ -36,6 +36,7 @@ class App extends React.Component {
 
 const mapStateToProps = state => ({
   headerTitle: state.pageNavigation.headerTitle,
+  headerType: state.pageNavigation.headerType,
 });
 
 export default connect(mapStateToProps)(App);

@@ -9,6 +9,7 @@ import rootReducer from './reducers';
 const store = createStore(rootReducer, {
   pageNavigation: {
     headerTitle: '',
+    headerType: 0,
     activeTab: '',
   }
 });

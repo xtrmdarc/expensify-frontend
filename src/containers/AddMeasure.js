@@ -5,7 +5,7 @@ import { changeHeaderTitle } from '../actions';
 class AddMeasure extends React.Component {
   constructor(props) {
     super(props);
-    this.props.changeHeaderTitle('Add measurement');
+    this.props.changeHeader('Add measurement',2);
   }
 
   render() { 
@@ -37,7 +37,7 @@ class AddMeasure extends React.Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  changeHeaderTitle: title => dispatch(changeHeaderTitle(title)),
+  changeHeader: (title, headerType) => dispatch(changeHeaderTitle(title, 2)),
 });
 
 export default connect(null, mapDispatchToProps)(AddMeasure);

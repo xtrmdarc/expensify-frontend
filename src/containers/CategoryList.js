@@ -10,7 +10,7 @@ class CategoryList extends React.Component {
     this.state = {
       categories: [],
     }
-    this.props.changeHeaderTitle('Choose category');
+    this.props.changeHeader('Choose category', 1);
   }
 
   componentDidMount() {
@@ -24,8 +24,6 @@ class CategoryList extends React.Component {
   }
 
   render() {
-    
-
     return (
       <div className="categoriesWrapper">
           {this.state.categories.map(p =>
@@ -42,7 +40,7 @@ class CategoryList extends React.Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  changeHeaderTitle: title => dispatch(changeHeaderTitle(title)),
+  changeHeader: (title, headerType) => dispatch(changeHeaderTitle(title, 1)),
 });
 
 export default connect(null, mapDispatchToProps)(CategoryList);
