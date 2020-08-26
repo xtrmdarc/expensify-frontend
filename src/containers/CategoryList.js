@@ -3,6 +3,7 @@ import TestImage from '../assets/img/test.svg';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { changeHeaderTitle } from '../actions';
+import expensifyApi from '../api/expensify';
 
 class CategoryList extends React.Component {
   constructor(props) {
@@ -14,12 +15,8 @@ class CategoryList extends React.Component {
   }
 
   componentDidMount() {
-    fetch('/expense_category/index')
-    .then(response => {
-      response.json().then( p => {
-        this.setState({categories: p});
-        console.log(p);
-      });
+    expensifyApi.listCategories().then( p => {
+      this.setState({categories: p});
     });
   }
 

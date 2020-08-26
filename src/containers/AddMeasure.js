@@ -1,33 +1,53 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { changeHeaderTitle } from '../actions';
+import expensifyApi from '../api/expensify';
 
 class AddMeasure extends React.Component {
   constructor(props) {
     super(props);
-    this.props.changeHeader('Add measurement',2);
+    this.state = {
+      amountValue: '',
+      dateValue: '',
+    }
+    this.props.changeHeader('Add measurement', 2);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(e) {
+    const val = e.target.value;
+    const elId = e.target.id;
+    this.setState({
+      [elId]: val,
+    });
+  }
+
+  handleSubmit() {
+    console.log(this.state);
+    const measurementObj = {
+      value: parseFloat(this.state.amountValue),
+      date: this.state.dateValue,
+      user_id: 1,
+      ex_cat_id: 1,
+    };
+    console.log(measurementObj);
+    expensifyApi.createNewMeasurement(measurementObj).catch(e => console.log(e));
   }
 
   render() { 
-    let date = new Date()
-
-    let day = date.getDate();
-    let month = date.getMonth() + 1;
-    let year = date.getFullYear();
-
-    console.log(`${day}/${month}/${year}`);
     return ( 
       <div className="addMeasure">
         <div className="pageHeader">
           <h2 className="pageTitle">Utility expense</h2>
         </div>
         <div className="mainContent">
-          <input className="valueInput" type="text" placeholder="$0.00"/>
+          <input id="amountValue" className="valueInput" type="text" placeholder="$0.00" onChange={this.handleChange} value={this.state.valueInput}/>
           <label htmlFor="date">
             Date
-            <input type="date" />
+            <input id="dateValue" type="date" onChange={this.handleChange} />
           </label>
-          <button className="cta">
+          <button className="cta" onClick={this.handleSubmit} value={this.state.dateValue}>
             Add
           </button>
         </div>
