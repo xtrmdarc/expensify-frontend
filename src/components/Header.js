@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-const Header = () => {
+const Header = props => {
   return (
     <header>
       <a className="buttonNav hidden" href="#"></a>
-        <span className="pageTitle">Choose expense</span>
+        <span className="pageTitle">{props.headerTitle}</span>
       <a className="buttonNav" href="#">+</a>
     </header>
   );

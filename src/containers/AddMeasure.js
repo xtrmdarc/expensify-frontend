@@ -1,6 +1,13 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { changeHeaderTitle } from '../actions';
 
 class AddMeasure extends React.Component {
+  constructor(props) {
+    super(props);
+    this.props.changeHeaderTitle('Add measurement');
+  }
+
   render() { 
     let date = new Date()
 
@@ -28,4 +35,9 @@ class AddMeasure extends React.Component {
     );
   }
 }
-export default AddMeasure;
+
+const mapDispatchToProps = dispatch => ({
+  changeHeaderTitle: title => dispatch(changeHeaderTitle(title)),
+});
+
+export default connect(null, mapDispatchToProps)(AddMeasure);

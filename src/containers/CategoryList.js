@@ -1,6 +1,8 @@
 import React from 'react';
 import TestImage from '../assets/img/test.svg';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { changeHeaderTitle } from '../actions';
 
 class CategoryList extends React.Component {
   constructor(props) {
@@ -8,6 +10,7 @@ class CategoryList extends React.Component {
     this.state = {
       categories: [],
     }
+    this.props.changeHeaderTitle('Choose category');
   }
 
   componentDidMount() {
@@ -21,6 +24,8 @@ class CategoryList extends React.Component {
   }
 
   render() {
+    
+
     return (
       <div className="categoriesWrapper">
           {this.state.categories.map(p =>
@@ -36,4 +41,8 @@ class CategoryList extends React.Component {
   }
 }
 
-export default CategoryList;
+const mapDispatchToProps = dispatch => ({
+  changeHeaderTitle: title => dispatch(changeHeaderTitle(title)),
+});
+
+export default connect(null, mapDispatchToProps)(CategoryList);
