@@ -1,9 +1,9 @@
 import React from 'react';
-import TestImage from '../assets/img/test.svg';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { changeHeaderTitle } from '../actions';
 import expensifyApi from '../api/expensify';
+import CategoryItem from '../components/CategoryItem';
 
 class CategoryList extends React.Component {
   constructor(props) {
@@ -25,10 +25,7 @@ class CategoryList extends React.Component {
       <div className="categoriesWrapper">
           {this.state.categories.map(p =>
             (
-              <Link to="/expense/name" href="#" className="categoryItem">
-                <img src={TestImage} alt=""/>
-                <span>{p.name}</span>
-              </Link>
+              <CategoryItem categoryData={p} />
             )
           )}
       </div>
