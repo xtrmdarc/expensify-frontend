@@ -2,13 +2,16 @@ import React from 'react';
 import logo from '../assets/img/logo.svg';
 import { connect } from 'react-redux';
 import { loginUser } from '../actions';
+import expensifyApi from '../api/expensify';
 
 class Login extends React.Component {
   constructor(props) {
     super(props);
     this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
     this.state = {
-      username: ''
+      usernameInput: '',
+      errorMessage: '',
     }
   }
 
@@ -19,10 +22,22 @@ class Login extends React.Component {
   }
 
   handleSubmit() {
-
+    expensifyApi.loginUser(this.state.username).then(user => {
+      console.log(user)
+      this.props.loginUser(user);
+    }).catch(error => {
+      this.setState({
+        errorMessage: error.message,
+      })
+    });
   }
 
   render() { 
+    let renderError = '';
+    if(this.state.errorMessage != ''){
+      renderError = <span className="errorMessage">{this.state.errorMessage}</span>;
+    }
+    
     return ( 
       <div className="login">
         <div className="mainContent" >
@@ -30,8 +45,9 @@ class Login extends React.Component {
           <label>
             Username
             <input id="usernameInput" type="text" placeholder="Type here" onChange={this.handleChange} value={this.state.username}/>
+            {renderError}
           </label>
-          <button className="cta">
+          <button className="cta" onClick={this.handleSubmit}>
             Log in
           </button>
         </div>

@@ -181,7 +181,7 @@ footer {
     label {
       color: white;
       font-size: 14px;
-
+      font-family: $titleFont;
       input[type="text"] {
         @include input();
         border: none;
@@ -192,6 +192,13 @@ footer {
           color: white;
         }
       }
+    }
+
+    .errorMessage {
+      display: block;
+      text-align: right;
+      font-size: 12px;
+      margin-top: 4px;
     }
 
     .cta {

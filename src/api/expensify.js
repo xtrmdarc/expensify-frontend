@@ -25,7 +25,25 @@ const expensifyApi = (() => {
     return data;
   };
 
-  return { listCategories, createNewMeasurement, getCategoryInfo };
+  const loginUser = async (username) => {
+    const response = await fetch('users/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({username})
+    });
+    
+    const data = await response.json();
+
+    if(response.status === 400) {
+      throw new Error(data.error);
+    }
+    
+    return data;
+  }
+
+  return { listCategories, createNewMeasurement, getCategoryInfo, loginUser };
 
 })();
 

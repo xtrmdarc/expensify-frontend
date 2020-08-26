@@ -28,8 +28,7 @@ class App extends React.Component {
             <div className="contentWrapper">
               <Switch>
                 <Route exact path="/">
-                  {/* <CategoryList updateTitle={this.updateTitle} /> */}
-                  <Login />
+                  <CategoryList updateTitle={this.updateTitle} />
                 </Route>
                 <Route exact path="/expense/:id">
                   <AddMeasure updateTitle={this.updateTitle}  />
