@@ -8,7 +8,7 @@ const Header = props => {
         Back
       </Link>
       <span className="pageTitle">{props.headerTitle}</span>
-      <a className="buttonNav" href="#">+</a>
+      <a className="buttonNav" href="#">Log out</a>
     </header>
   );
 }

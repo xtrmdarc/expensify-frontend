@@ -1,11 +1,14 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-const FooterNav = () => {
+const FooterNav = props => {
+  const { actualTab, userId } = props;
+  console.log(props);
   return (
     <footer>
       <nav>
-        <a className="navItem">Add expense</a>
-        <a className="navItem">Your progress</a>
+        <Link to="/" className={`navItem ${actualTab === 'list' ? 'active' : ''}`}>Add expense</Link>
+        <Link to={`/progress/${userId}`} className={`navItem ${actualTab === 'progress' ? 'active' : ''}`}>Your progress</Link>
       </nav>
     </footer>
   )

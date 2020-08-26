@@ -30,7 +30,8 @@ header {
 
   .buttonNav {
     display: block;
-    width: 40px;
+    width: 50px;
+    font-size: 12px;
     text-align: center;
 
     &.hidden {
@@ -154,9 +155,18 @@ footer {
 
     a {
       width: calc(100% / 2);
+      height: 100%;
       color: white;
       text-align: center;
       font-family: $titleFont;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      &.active {
+        background-color: $brandColor;
+        color: white;
+      }
     }
   }
 }

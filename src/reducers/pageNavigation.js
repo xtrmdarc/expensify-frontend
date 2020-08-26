@@ -7,7 +7,7 @@ const pageNavigationReducer = (state = {}, action) => {
       return Object.assign({},state, {headerTitle: action.title, headerType: action.headerType});
     }
     case CHANGE_ACTIVE_TAB: {
-      return Object.assign({},state, {activeTab: action.title});
+      return Object.assign({},state, {activeTab: action.activeTab});
     }
     default: return state;
   }

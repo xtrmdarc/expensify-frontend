@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { changeHeaderTitle, setMeasureItem } from '../actions';
+import { changeHeaderTitle, setMeasureItem, changeActiveTab } from '../actions';
 import expensifyApi from '../api/expensify';
 import { withRouter } from 'react-router-dom';
 
@@ -18,10 +18,11 @@ class AddMeasure extends React.Component {
 
   componentDidMount() {
     const { id } = this.props.match.params;
+    const { setActiveTab } = this.props;
     expensifyApi.getCategoryInfo(id).then( info => {
       this.props.setMeasureItem(info)
-      console.log(info);
     });
+    setActiveTab('list');
   }
 
   handleChange(e) {
@@ -33,11 +34,12 @@ class AddMeasure extends React.Component {
   }
 
   handleSubmit() {
+    const { user, measureItem } = this.props;
     const measurementObj = {
       value: parseFloat(this.state.amountValue),
       date: this.state.dateValue,
-      user_id: 1,
-      ex_cat_id: 1,
+      user_id: user.id,
+      ex_cat_id: measureItem.id,
     };
     expensifyApi.createNewMeasurement(measurementObj).catch(e => console.log(e));
   }
@@ -66,11 +68,13 @@ class AddMeasure extends React.Component {
 
 const mapStateToProps = state => ({
   measureItem: state.addMeasureItem,
+  user: state.user,
 });
 
 const mapDispatchToProps = dispatch => ({
   changeHeader: (title) => dispatch(changeHeaderTitle(title, 2)),
-  setMeasureItem: (measureItem) => dispatch(setMeasureItem(measureItem))
+  setMeasureItem: (measureItem) => dispatch(setMeasureItem(measureItem)),
+  setActiveTab: (tabName) => dispatch(changeActiveTab(tabName)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(AddMeasure));

@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 import { loadCategoriesList } from '../actions';
 import expensifyApi from '../api/expensify';
 import Login from './Login';
+import Progress from './Progress';
 
 class App extends React.Component {
   constructor(props) {
@@ -21,10 +22,12 @@ class App extends React.Component {
   }
 
   render() {
+    const{ headerTitle, headerType, activeTab, user } = this.props;
+    console.log(this.props);
     return (
       <div>
         <Router>
-          <Header headerTitle={this.props.headerTitle} headerType={this.props.headerType}/>
+          <Header headerTitle={headerTitle} headerType={headerType}/>
             <div className="contentWrapper">
               <Switch>
                 <Route exact path="/">
@@ -33,9 +36,12 @@ class App extends React.Component {
                 <Route exact path="/expense/:id">
                   <AddMeasure updateTitle={this.updateTitle}  />
                 </Route>
+                <Route>
+                  <Progress  />
+                </Route>
               </Switch>
             </div>
-          <FooterNav />
+          <FooterNav actualTab={activeTab} userId={user.id} />
         </Router>
       </div>
     );
@@ -45,6 +51,8 @@ class App extends React.Component {
 const mapStateToProps = state => ({
   headerTitle: state.pageNavigation.headerTitle,
   headerType: state.pageNavigation.headerType,
+  activeTab: state.pageNavigation.activeTab,
+  user: state.user,
 });
 
 const mapDispatchToProps = dispatch => ({
