@@ -7,6 +7,7 @@ import AddMeasure from './AddMeasure';
 import { connect } from 'react-redux';
 import { loadCategoriesList } from '../actions';
 import expensifyApi from '../api/expensify';
+import Login from './Login';
 
 class App extends React.Component {
   constructor(props) {
@@ -27,7 +28,8 @@ class App extends React.Component {
             <div className="contentWrapper">
               <Switch>
                 <Route exact path="/">
-                  <CategoryList updateTitle={this.updateTitle} />
+                  {/* <CategoryList updateTitle={this.updateTitle} /> */}
+                  <Login />
                 </Route>
                 <Route exact path="/expense/:id">
                   <AddMeasure updateTitle={this.updateTitle}  />

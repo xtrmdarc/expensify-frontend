@@ -14,12 +14,6 @@ class CategoryList extends React.Component {
     this.props.changeHeader('Choose category', 1);
   }
 
-  // componentDidMount() {
-  //   expensifyApi.listCategories().then( p => {
-  //     this.setState({categories: p});
-  //   });
-  // }
-
   render() {
     return (
       <div className="categoriesWrapper">

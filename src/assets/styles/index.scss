@@ -160,3 +160,43 @@ footer {
     }
   }
 }
+
+.login {
+  background-color: $brandColor;
+  display: flex;
+  flex-direction: color;
+  justify-content: center;
+  align-items: center;
+  .mainContent {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 300px;
+    
+    img {
+      height: 50px;
+      margin-bottom: $broadSpace;
+    }
+
+    label {
+      color: white;
+  
+      input[type="text"] {
+        @include input();
+        border: none;
+        background-color: transparent;
+        color: white;
+        border-bottom: 1px solid white;
+        &::placeholder {
+          color: white;
+        }
+      }
+    }
+
+    .cta {
+      margin-top: $broadSpace;
+      background-color: $accentColor;
+      color: white;
+    }
+  }
+}

@@ -5,6 +5,7 @@ import App from './containers/App';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import rootReducer from './reducers';
+import SecurityWrapper from './containers/SecurityWrapper';
 
 const store = createStore(rootReducer, {
   pageNavigation: {
@@ -14,11 +15,14 @@ const store = createStore(rootReducer, {
   },
   categoriesList: [],
   addMeasureItem: {},
+  user: {
+
+  },
 });
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <SecurityWrapper />
   </Provider>,
   document.getElementById('root')
 );
