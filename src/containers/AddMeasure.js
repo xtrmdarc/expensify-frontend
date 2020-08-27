@@ -34,14 +34,19 @@ class AddMeasure extends React.Component {
   }
 
   handleSubmit() {
-    const { user, measureItem } = this.props;
+    const { user, measureItem, loadProgress } = this.props;
+
     const measurementObj = {
       value: parseFloat(this.state.amountValue),
       date: this.state.dateValue,
       user_id: user.id,
       ex_cat_id: measureItem.id,
     };
-    expensifyApi.createNewMeasurement(measurementObj).catch(e => console.log(e));
+    expensifyApi.createNewMeasurement(measurementObj)
+    .then(p => {
+      loadProgress();
+    })
+    .catch(e => console.log(e));
   }
 
   render() { 

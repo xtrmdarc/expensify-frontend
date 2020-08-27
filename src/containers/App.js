@@ -13,20 +13,26 @@ import Progress from './Progress';
 class App extends React.Component {
   constructor(props) {
     super(props);
+    this.loadUserProgress = this.loadUserProgress.bind(this);
   }
-
-  componentDidMount() {
+  
+  loadUserProgress() {
     const { user } = this.props;
-    expensifyApi.listCategories().then( p => {
-      this.props.updateCategoriesList(p)
-    });
     expensifyApi.getProgress(user.id).then( p => {
       this.props.loadProgress(p)
     });
   }
 
+  componentDidMount() {
+    expensifyApi.listCategories().then( p => {
+      this.props.updateCategoriesList(p)
+    });
+    this.loadUserProgress();
+    
+  }
+
   render() {
-    const{ headerTitle, headerType, activeTab, user } = this.props;
+    const{ headerTitle, headerType, activeTab, user, loadProgress } = this.props;
     console.log(this.props);
     return (
       <div>
@@ -38,7 +44,7 @@ class App extends React.Component {
                   <CategoryList updateTitle={this.updateTitle} />
                 </Route>
                 <Route exact path="/expense/:id">
-                  <AddMeasure updateTitle={this.updateTitle}  />
+                  <AddMeasure updateTitle={this.updateTitle} loadProgress={this.loadUserProgress}  />
                 </Route>
                 <Route exact path="/progress/:id">
                   <Progress  />

@@ -218,3 +218,30 @@ footer {
     }
   }
 }
+
+.progress {
+  .progressItem {
+    padding: $closeSpace;
+    background-color: white;
+    display: flex; 
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(122, 122, 122, 0.13);
+    .leftSection {
+      display: flex;
+      flex-direction: column;
+      h4 {
+        font-size: $titleFont;
+        font-size: 16px;
+        font-weight: 400;
+      }
+    }
+
+    .rightSection {
+      .diff {
+        font-weight: 700;
+      }
+    }
+    
+  }
+}

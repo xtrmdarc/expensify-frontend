@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { changeActiveTab, changeHeaderTitle, loadProgress } from '../actions';
+import ProgressItem from '../components/ProgressItem';
 
 class Progress extends React.Component {
   constructor(props) {
@@ -15,11 +16,10 @@ class Progress extends React.Component {
 
   render() { 
     const { progress } = this.props;
-    console.log(progress);
     return (  
       <div className="progress">
         {progress.map(p => (
-          <div> {p.value} </div>
+          <ProgressItem progressData={p} />
         ))}
       </div>
     );
