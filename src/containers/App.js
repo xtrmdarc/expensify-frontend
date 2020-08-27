@@ -5,7 +5,7 @@ import FooterNav from '../components/FooterNav';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import AddMeasure from './AddMeasure';
 import { connect } from 'react-redux';
-import { loadCategoriesList, loadProgress } from '../actions';
+import { loadCategoriesList, loadProgress, logOutUser } from '../actions';
 import expensifyApi from '../api/expensify';
 import Login from './Login';
 import Progress from './Progress';
@@ -14,6 +14,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.loadUserProgress = this.loadUserProgress.bind(this);
+    this.logOutUser = this.logOutUser.bind(this);
   }
   
   loadUserProgress() {
@@ -21,6 +22,10 @@ class App extends React.Component {
     expensifyApi.getProgress(user.id).then( p => {
       this.props.loadProgress(p)
     });
+  }
+
+  logOutUser() {
+    
   }
 
   componentDidMount() {
@@ -32,12 +37,12 @@ class App extends React.Component {
   }
 
   render() {
-    const{ headerTitle, headerType, activeTab, user, loadProgress } = this.props;
+    const{ headerTitle, headerType, activeTab, user, loadProgress, logOutUser } = this.props;
     console.log(this.props);
     return (
       <div>
         <Router>
-          <Header headerTitle={headerTitle} headerType={headerType}/>
+          <Header headerTitle={headerTitle} headerType={headerType} logOutUser={logOutUser}/>
             <div className="contentWrapper">
               <Switch>
                 <Route exact path="/">
@@ -68,6 +73,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   updateCategoriesList: categories => dispatch(loadCategoriesList(categories)),
   loadProgress: progress => dispatch(loadProgress(progress)),
+  logOutUser: () => dispatch(logOutUser()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

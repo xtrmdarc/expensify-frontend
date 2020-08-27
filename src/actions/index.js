@@ -4,6 +4,7 @@ export const LOAD_CATEGORIES_LIST = 'LOAD_CATEGORIES_LIST';
 export const SET_MEASURE_ITEM = 'SET_MEASURE_ITEM';
 export const LOGIN_USER = 'LOGIN_USER';
 export const LOAD_PROGRESS = 'LOAD_PROGRESS';
+export const LOGOUT_USER = 'LOGOUT_USER';
 
 export const changeHeaderTitle = (title, headerType) => {
   return {
@@ -45,5 +46,11 @@ export const loadProgress = progress => {
   return {
     type: LOAD_PROGRESS,
     progress,
+  }
+}
+
+export const logOutUser = () => {
+  return {
+    type: LOGOUT_USER,
   }
 }

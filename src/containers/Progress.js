@@ -11,7 +11,7 @@ class Progress extends React.Component {
   componentDidMount() {
     const { setActiveTab, changeHeader } = this.props;
     setActiveTab('progress');
-    changeHeader('Track your progress');
+    changeHeader('Track daily expenses');
   }
 
   render() { 

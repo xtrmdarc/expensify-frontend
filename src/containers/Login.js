@@ -23,7 +23,6 @@ class Login extends React.Component {
 
   handleSubmit() {
     expensifyApi.loginUser(this.state.username).then(user => {
-      console.log(user)
       this.props.loginUser(user);
     }).catch(error => {
       this.setState({
@@ -44,7 +43,7 @@ class Login extends React.Component {
           <img src={logo} alt="expensify logo" />
           <label>
             Username
-            <input id="usernameInput" type="text" placeholder="Type here" onChange={this.handleChange} value={this.state.username}/>
+            <input id="usernameInput" value={this.state.usernameInput} type="text" placeholder="Type here" onChange={this.handleChange} value={this.state.username}/>
             {renderError}
           </label>
           <button className="cta" onClick={this.handleSubmit}>
