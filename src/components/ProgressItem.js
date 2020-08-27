@@ -1,5 +1,5 @@
 import React from 'react';
-
+import arrowImg from '../assets/img/right_arrow.svg';
 const ProgressItem  = props => {
 
   const { progressData, progressDate } = props;
@@ -13,6 +13,7 @@ const ProgressItem  = props => {
       </div>
       <div className="rightSection">
         <span className="diff">${progressData.totalAmount}</span>
+        <img className="arrowIcon" src={arrowImg} />
       </div>
     </div>
   );
