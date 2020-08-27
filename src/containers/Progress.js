@@ -16,11 +16,28 @@ class Progress extends React.Component {
 
   render() { 
     const { progress } = this.props;
+    let dailyProgress = {};
+
+    progress.forEach(measure => {
+      if(!dailyProgress[measure.date])
+        dailyProgress[measure.date] = {
+          totalAmount: measure.value,
+          measurements: [measure],
+        };
+      else {
+        dailyProgress[measure.date].totalAmount += measure.value;
+        dailyProgress[measure.date].measurements.push(measure);
+      }
+    });
+    const renderList = [];
+
+    for(const [key, value] of (Object.entries(dailyProgress)).sort((a,b) => new Date(b[0]).getTime() - new Date(a[0]).getTime())) {
+      renderList.push(<ProgressItem progressData={value} progressDate={key}/>)
+    }
+
     return (  
       <div className="progress">
-        {progress.map(p => (
-          <ProgressItem progressData={p} />
-        ))}
+        {renderList}
       </div>
     );
   }

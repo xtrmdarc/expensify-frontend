@@ -2,17 +2,17 @@ import React from 'react';
 
 const ProgressItem  = props => {
 
-  const { progressData } = props;
-  const progressDate = new Date(progressData.date);
-  console.log (progressDate);
+  const { progressData, progressDate } = props;
+  const progressDateString = new Date(progressDate).toDateString();
+
   return (
     <div className="progressItem">
       <div className="leftSection">
-        <h4>{progressDate.toDateString()}</h4>
+        <h4>{progressDateString}</h4>
         <span className=""></span>
       </div>
       <div className="rightSection">
-        <span className="diff"></span>
+        <span className="diff">${progressData.totalAmount}</span>
       </div>
     </div>
   );
