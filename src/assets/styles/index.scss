@@ -95,6 +95,12 @@ header {
     }
     input[type="date"] {
       @include input();
+      margin-bottom: 5px;
+    }
+
+    .errorSubmission {
+      font-size: 12px;
+      color: rgb(240, 54, 54);;
     }
 
     .cta {
