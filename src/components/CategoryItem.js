@@ -5,12 +5,11 @@ import arrowIcon from '../assets/img/right_arrow.svg';
 
 const CategoryItem = props => {
   const { name, id } = props.categoryData;
-
+  // fetch(`${image_url}`).then(p => console.log(p));
   return (
     <Link to={`/expense/${id}`} href="#" className="categoryItem">
-      <img className="categoryImg" src={TestImage} alt=""/>
       <span>{name}</span>
-      <img className="arrowIcon" src={arrowIcon}/>
+      {/* <img className="arrowIcon" src={arrowIcon}/> */}
     </Link>
   );
 }
