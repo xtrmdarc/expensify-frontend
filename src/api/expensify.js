@@ -26,7 +26,7 @@ const expensifyApi = (() => {
   };
 
   const loginUser = async (username) => {
-    const response = await fetch('users/login', {
+    const response = await fetch('/users/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

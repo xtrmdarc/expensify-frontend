@@ -14,18 +14,14 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.loadUserProgress = this.loadUserProgress.bind(this);
-    this.logOutUser = this.logOutUser.bind(this);
   }
   
   loadUserProgress() {
     const { user } = this.props;
+    console.log(user);
     expensifyApi.getProgress(user.id).then( p => {
       this.props.loadProgress(p)
     });
-  }
-
-  logOutUser() {
-    
   }
 
   componentDidMount() {
@@ -38,7 +34,7 @@ class App extends React.Component {
 
   render() {
     const{ headerTitle, headerType, activeTab, user, loadProgress, logOutUser } = this.props;
-    console.log(this.props);
+
     return (
       <div>
         <Router>
@@ -52,7 +48,7 @@ class App extends React.Component {
                   <AddMeasure updateTitle={this.updateTitle} loadProgress={this.loadUserProgress}  />
                 </Route>
                 <Route exact path="/progress/:id">
-                  <Progress  />
+                  <Progress user={user} />
                 </Route>
               </Switch>
             </div>
