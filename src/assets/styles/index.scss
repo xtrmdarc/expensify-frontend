@@ -220,6 +220,12 @@ footer {
 }
 
 .progress {
+  background-color: $lightGray;
+  .titleList {
+    padding: 8px $closeSpace;
+    font-weight: 400;
+    font-size: 14px;
+  }
   .progressItem {
     padding: $closeSpace;
     background-color: white;
@@ -232,8 +238,8 @@ footer {
       flex-direction: column;
       h4 {
         font-size: $titleFont;
-        font-size: 16px;
-        font-weight: 400;
+        font-size: 15px;
+        font-weight: 500;
       }
     }
 
