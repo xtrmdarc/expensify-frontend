@@ -41,14 +41,14 @@ class App extends React.Component {
           <Header headerTitle={headerTitle} headerType={headerType} logOutUser={logOutUser}/>
             <div className="contentWrapper">
               <Switch>
-                <Route exact path="/">
-                  <CategoryList updateTitle={this.updateTitle} />
-                </Route>
                 <Route exact path="/expense/:id">
                   <AddMeasure updateTitle={this.updateTitle} loadProgress={this.loadUserProgress}  />
                 </Route>
                 <Route exact path="/progress/:id">
                   <Progress user={user} />
+                </Route>
+                <Route path="/">
+                  <CategoryList updateTitle={this.updateTitle} />
                 </Route>
               </Switch>
             </div>

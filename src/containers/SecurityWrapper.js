@@ -2,6 +2,7 @@ import React from 'react';
 import App from './App';
 import Login from './Login';
 import { connect } from 'react-redux';
+import AuthenticationWrapper from '../components/AuthenticationWrapper';
 
 class SecurityWrapper extends React.Component {
 
@@ -11,7 +12,7 @@ class SecurityWrapper extends React.Component {
     if(Object.keys(user).length != 0)
       componentToRender = <App />
     else
-      componentToRender = <Login />
+      componentToRender = <AuthenticationWrapper />
 
     return componentToRender;
   }

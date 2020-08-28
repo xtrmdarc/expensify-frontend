@@ -3,6 +3,7 @@ import logo from '../assets/img/logo.svg';
 import { connect } from 'react-redux';
 import { loginUser } from '../actions';
 import expensifyApi from '../api/expensify';
+import { Link } from 'react-router-dom';
 
 class Login extends React.Component {
   constructor(props) {
@@ -17,12 +18,13 @@ class Login extends React.Component {
 
   handleChange(e) {
     this.setState({
-      username: e.target.value,
+      usernameInput: e.target.value,
     })
   }
 
   handleSubmit() {
-    expensifyApi.loginUser(this.state.username).then(user => {
+    console.log(this.state);
+    expensifyApi.loginUser(this.state.usernameInput).then(user => {
       this.props.loginUser(user);
     }).catch(error => {
       this.setState({
@@ -43,12 +45,13 @@ class Login extends React.Component {
           <img src={logo} alt="expensify logo" />
           <label>
             Username
-            <input id="usernameInput" value={this.state.usernameInput} type="text" placeholder="Type here" onChange={this.handleChange} value={this.state.username}/>
+            <input id="usernameInput" value={this.state.usernameInput} type="text" placeholder="Type here" onChange={this.handleChange} value={this.state.usernameInput}/>
             {renderError}
           </label>
           <button className="cta" onClick={this.handleSubmit}>
             Log in
           </button>
+          <Link to="/signUp" className="formLink">Don't have an account yet? <u>Sign Up here</u> </Link>
         </div>
       </div>
     );

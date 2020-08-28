@@ -2,8 +2,8 @@ import React from 'react';
 import arrowImg from '../assets/img/right_arrow.svg';
 const ProgressItem  = props => {
 
-  const { progressData, progressDate } = props;
-  const progressDateString = new Date(progressDate).toDateString();
+  const { progressData } = props;
+  const progressDateString = new Date(progressData.date).toLocaleString('en-us', { month: 'long'});
 
   return (
     <div className="progressItem">
@@ -12,7 +12,7 @@ const ProgressItem  = props => {
         <span className=""></span>
       </div>
       <div className="rightSection">
-        <span className="diff">${progressData.totalAmount}</span>
+        <span className="diff">${progressData.totalAmount.toFixed(2)}</span>
         <img className="arrowIcon" src={arrowImg} />
       </div>
     </div>

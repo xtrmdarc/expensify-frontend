@@ -11,7 +11,7 @@ class Progress extends React.Component {
   componentDidMount() {
     const { setActiveTab, changeHeader } = this.props;
     setActiveTab('progress');
-    changeHeader('Track daily expenses');
+    changeHeader('Track monthly expenses');
   }
 
   render() { 
@@ -19,15 +19,16 @@ class Progress extends React.Component {
     let dailyProgress = {};
 
     progress.forEach(measure => {
-      if(!dailyProgress[measure.date])
-        dailyProgress[measure.date] = {
+      const actualDate = new Date(measure.date);
+      if(!dailyProgress[actualDate.getMonth()])
+        dailyProgress[actualDate.getMonth()] = {
           date: measure.date,
           totalAmount: measure.value,
           measurements: [measure],
         };
       else {
-        dailyProgress[measure.date].totalAmount += measure.value;
-        dailyProgress[measure.date].measurements.push(measure);
+        dailyProgress[actualDate.getMonth()].totalAmount += measure.value;
+        dailyProgress[actualDate.getMonth()].measurements.push(measure);
       }
     });
     const renderList = [];
@@ -40,25 +41,23 @@ class Progress extends React.Component {
     // todayProgress.push(orderedProgress.filter(p => new Date(p.date).toDateString === today));
     // get past progress
 
-    
+    console.log(orderedProgress);
     for(const [key, value] of orderedProgress) {
       const progressItem = <ProgressItem progressData={value} progressDate={key} />;
       const progressItemDate = new Date(value.date);
-      if(progressItemDate.toDateString() === today.toDateString()) {
+      if(progressItemDate.getMonth() === today.getMonth()) {
         todayProgress.push(progressItem);
       }
-      else if(progressItemDate.getTime() < today.getTime() ){
+      else if(progressItemDate.getMonth() < today.getMonth() ){
         pastProgress.push(progressItem);
       }
       else  futureProgress.push(progressItem);
-
-      // renderList.push(<ProgressItem progressData={value} progressDate={key}/>)
     }
     return (  
       <div className="progress">
         <h4 className="titleList">Future</h4>
         {futureProgress}
-        <h4 className="titleList">Today</h4>
+        <h4 className="titleList">This month</h4>
         {todayProgress}
         <h4 className="titleList">Past</h4>
         {pastProgress}
