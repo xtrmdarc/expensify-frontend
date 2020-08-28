@@ -32,18 +32,17 @@ class Progress extends React.Component {
       }
     });
     const renderList = [];
-    const orderedProgress = (Object.entries(dailyProgress)).sort((a,b) => new Date(b[0]).getTime() - new Date(a[0]).getTime());
-    //get todays progress
+    const orderedProgress = (Object.entries(dailyProgress)).sort((a,b) => new Date(a[0]).getTime() - new Date(b[0]).getTime());
+
     const todayProgress = [];
     const pastProgress = [];
     const futureProgress = [];
     const today = new Date(Date.now());
-    // todayProgress.push(orderedProgress.filter(p => new Date(p.date).toDateString === today));
-    // get past progress
 
-    console.log(orderedProgress);
+    let prevItem;
+
     for(const [key, value] of orderedProgress) {
-      const progressItem = <ProgressItem progressData={value} progressDate={key} />;
+      const progressItem = <ProgressItem key={key} progressData={value} progressDate={key} prevData={prevItem} />;
       const progressItemDate = new Date(value.date);
       if(progressItemDate.getMonth() === today.getMonth()) {
         todayProgress.push(progressItem);
@@ -52,7 +51,13 @@ class Progress extends React.Component {
         pastProgress.push(progressItem);
       }
       else  futureProgress.push(progressItem);
+
+      prevItem = value;
     }
+
+    pastProgress.reverse();
+    futureProgress.reverse();
+
     return (  
       <div className="progress">
         <h4 className="titleList">Future</h4>
