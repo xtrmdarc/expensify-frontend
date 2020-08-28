@@ -218,7 +218,9 @@ footer {
       color: white;
       font-size: 14px;
       font-family: $titleFont;
-      input[type="text"] {
+      margin-top: $closeSpace;
+
+      input[type="text"], input[type="password"] {
         @include input();
         @include formInput();
         &::placeholder {
@@ -229,7 +231,6 @@ footer {
 
     .errorMessage {
       display: block;
-      text-align: right;
       font-size: 12px;
       margin-top: 4px;
     }

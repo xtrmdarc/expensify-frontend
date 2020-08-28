@@ -25,21 +25,22 @@ const expensifyApi = (() => {
     return data;
   };
 
-  const loginUser = async (username) => {
+  const loginUser = async (username, password) => {
     const response = await fetch('/users/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({username})
+      body: JSON.stringify({username, password})
     });
-    
+
     const data = await response.json();
 
     if(response.status === 400) {
-      throw new Error(data.error);
+      if(data.error) throw data.error;
+      if(data.errors) throw data.errors;
     }
-    
+
     return data;
   }
 

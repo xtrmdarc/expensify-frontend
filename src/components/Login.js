@@ -10,42 +10,54 @@ class Login extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.state = {
       usernameInput: '',
-      errorMessage: '',
+      passwordInput: '',
+      errorSubmit: '',
     }
   }
 
   handleChange(e) {
     this.setState({
-      usernameInput: e.target.value,
+      [e.target.id]: e.target.value,
     })
   }
 
   handleSubmit() {
-    console.log(this.state);
-    expensifyApi.loginUser(this.state.usernameInput).then(user => {
-      console.log(this.props);
+    const { usernameInput, passwordInput } = this.state;
+    expensifyApi.loginUser(usernameInput, passwordInput).then(user => {
+      console.log(user);
       this.props.loginUser(user);
     }).catch(error => {
+      console.log(error);
       this.setState({
-        errorMessage: error.message,
+        errorSubmit: error,
       })
     });
   }
 
   render() { 
-    let renderError = '';
-    if(this.state.errorMessage != ''){
-      renderError = <span className="errorMessage">{this.state.errorMessage}</span>;
+    let renderError = [];
+    const { errorSubmit } = this.state;
+    if(errorSubmit.forEach){
+      errorSubmit.forEach(p => {
+        renderError.push(<span className="errorMessage">{p}</span>);
+      });
     }
-    
+    else {
+      renderError.push(<span className="errorMessage">{errorSubmit}</span>);
+    }
+
     return ( 
       <div className="login">
         <div className="mainContent" >
           <img src={logo} alt="expensify logo" />
+          {renderError}
           <label>
             Username
             <input id="usernameInput" value={this.state.usernameInput} type="text" onChange={this.handleChange} value={this.state.usernameInput}/>
-            {renderError}
+          </label>
+          <label>
+            Password
+            <input id="passwordInput" value={this.state.passwordInput} type="password" onChange={this.handleChange} value={this.state.passwordInput}/>
           </label>
           <button className="cta" onClick={this.handleSubmit}>
             Log in
