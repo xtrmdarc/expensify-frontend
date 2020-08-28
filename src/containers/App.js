@@ -18,7 +18,7 @@ class App extends React.Component {
   
   loadUserProgress() {
     const { user } = this.props;
-    console.log(user);
+
     expensifyApi.getProgress(user.id).then( p => {
       this.props.loadProgress(p)
     });

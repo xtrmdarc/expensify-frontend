@@ -30,7 +30,7 @@ class SignUp extends React.Component {
       password: passwordInput,
       password_confirmation: passwordConfirmationInput,
     }
-    console.log(this.props);
+
     expensifyApi.signUpUser(newUser).then( p => {
       this.props.loginUser(p);
     })

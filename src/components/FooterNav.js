@@ -4,7 +4,7 @@ import addIcon from '../assets/img/add.svg';
 import growIcon from '../assets/img/grow.svg';
 const FooterNav = props => {
   const { actualTab, userId } = props;
-  console.log(props);
+
   return (
     <footer>
       <nav>
