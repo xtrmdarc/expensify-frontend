@@ -60,11 +60,11 @@ class Progress extends React.Component {
 
     return (  
       <div className="progress">
-        <h4 className="titleList">Future</h4>
+        <h4 className="titleList">Upcoming</h4>
         {futureProgress}
         <h4 className="titleList">This month</h4>
         {todayProgress}
-        <h4 className="titleList">Past</h4>
+        <h4 className="titleList">Previous</h4>
         {pastProgress}
       </div>
     );
