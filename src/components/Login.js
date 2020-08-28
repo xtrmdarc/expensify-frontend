@@ -1,7 +1,5 @@
 import React from 'react';
 import logo from '../assets/img/logo.svg';
-import { connect } from 'react-redux';
-import { loginUser } from '../actions';
 import expensifyApi from '../api/expensify';
 import { Link } from 'react-router-dom';
 
@@ -25,6 +23,7 @@ class Login extends React.Component {
   handleSubmit() {
     console.log(this.state);
     expensifyApi.loginUser(this.state.usernameInput).then(user => {
+      console.log(this.props);
       this.props.loginUser(user);
     }).catch(error => {
       this.setState({
@@ -45,7 +44,7 @@ class Login extends React.Component {
           <img src={logo} alt="expensify logo" />
           <label>
             Username
-            <input id="usernameInput" value={this.state.usernameInput} type="text" placeholder="Type here" onChange={this.handleChange} value={this.state.usernameInput}/>
+            <input id="usernameInput" value={this.state.usernameInput} type="text" onChange={this.handleChange} value={this.state.usernameInput}/>
             {renderError}
           </label>
           <button className="cta" onClick={this.handleSubmit}>
@@ -58,8 +57,4 @@ class Login extends React.Component {
   }
 }
 
-const mapDispatchToProps = dispatch => ({
-  loginUser: username => dispatch(loginUser(username)),
-});
- 
-export default connect(null,mapDispatchToProps)(Login);
+export default Login;

@@ -7,7 +7,7 @@ import AddMeasure from './AddMeasure';
 import { connect } from 'react-redux';
 import { loadCategoriesList, loadProgress, logOutUser } from '../actions';
 import expensifyApi from '../api/expensify';
-import Login from './Login';
+import Login from '../components/Login';
 import Progress from './Progress';
 
 class App extends React.Component {

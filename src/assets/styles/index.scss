@@ -220,10 +220,7 @@ footer {
       font-family: $titleFont;
       input[type="text"] {
         @include input();
-        border: none;
-        background-color: transparent;
-        color: white;
-        border-bottom: 1px solid white;
+        @include formInput();
         &::placeholder {
           color: white;
         }
@@ -243,11 +240,56 @@ footer {
       color: white;
     }
 
-    .formLink {
-      color: white;
+    
+  }
+}
+
+.signUp {
+  background-color: $brandColor;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .mainContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    max-width: 300px;
+
+    .signUpTitle {
+      font-size: 25px;
+      margin-bottom: $closeSpace;
+    }
+
+    .errorMessage {
+      align-self: flex-start;
       font-size: 12px;
-      text-align: center;
-      margin-top: $closeSpace;
+      color: black;
+    }
+
+    label {
+      color: white;
+      font-size: 14px;
+      font-family: $titleFont;
+      margin-top: calc(#{$closeSpace} + 5px);
+      width: 100%;
+      input[type="text"], input[type="password"] {
+        @include input();
+        @include formInput();
+        &::placeholder {
+          color: white;
+        }
+      }
+    }
+
+    .cta {
+      width: 100%;
+      margin-top: $broadSpace;
+      background-color: $accentColor;
+      color: white;
     }
   }
 }

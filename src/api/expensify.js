@@ -49,7 +49,24 @@ const expensifyApi = (() => {
     return data;
   }
 
-  return { listCategories, createNewMeasurement, getCategoryInfo, loginUser, getProgress };
+  const signUpUser = async (user) => {
+    const response = await fetch('/users', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(user),
+    });
+    const data = await response.json();
+    
+    if(response.status === 400) {
+      throw data.errors;
+    }
+
+    return data;
+  }
+
+  return { listCategories, createNewMeasurement, getCategoryInfo, loginUser, getProgress, signUpUser };
 
 })();
 

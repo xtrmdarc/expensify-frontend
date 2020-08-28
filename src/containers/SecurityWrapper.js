@@ -1,8 +1,7 @@
 import React from 'react';
 import App from './App';
-import Login from './Login';
 import { connect } from 'react-redux';
-import AuthenticationWrapper from '../components/AuthenticationWrapper';
+import AuthenticationWrapper from './AuthenticationWrapper';
 
 class SecurityWrapper extends React.Component {
 
