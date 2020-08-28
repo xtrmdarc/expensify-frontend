@@ -82,7 +82,7 @@ class AddMeasure extends React.Component {
     .then(p => {
       loadProgress();
     })
-    .catch(e => console.log(e));
+    .catch(e => e);
     this.props.history.push('/');
   }
 

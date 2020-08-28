@@ -24,10 +24,8 @@ class Login extends React.Component {
   handleSubmit() {
     const { usernameInput, passwordInput } = this.state;
     expensifyApi.loginUser(usernameInput, passwordInput).then(user => {
-      console.log(user);
       this.props.loginUser(user);
     }).catch(error => {
-      console.log(error);
       this.setState({
         errorSubmit: error,
       })
