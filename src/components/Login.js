@@ -37,11 +37,11 @@ class Login extends React.Component {
     const { errorSubmit } = this.state;
     if(errorSubmit.forEach){
       errorSubmit.forEach(p => {
-        renderError.push(<span className="errorMessage">{p}</span>);
+        renderError.push(<span key={p} className="errorMessage">{p}</span>);
       });
     }
     else {
-      renderError.push(<span className="errorMessage">{errorSubmit}</span>);
+      renderError.push(<span key={errorSubmit} className="errorMessage">{errorSubmit}</span>);
     }
 
     return ( 
@@ -51,13 +51,13 @@ class Login extends React.Component {
           {renderError}
           <label>
             Username
-            <input id="usernameInput" value={this.state.usernameInput} type="text" onChange={this.handleChange} value={this.state.usernameInput}/>
+            <input data-testid="username" id="usernameInput" value={this.state.usernameInput} type="text" onChange={this.handleChange} value={this.state.usernameInput}/>
           </label>
           <label>
             Password
-            <input id="passwordInput" value={this.state.passwordInput} type="password" onChange={this.handleChange} value={this.state.passwordInput}/>
+            <input data-testid="password" id="passwordInput" value={this.state.passwordInput} type="password" onChange={this.handleChange} value={this.state.passwordInput}/>
           </label>
-          <button className="cta" onClick={this.handleSubmit}>
+          <button data-testid="loginBtn" className="cta" onClick={this.handleSubmit}>
             Log in
           </button>
           <Link to="/signUp" className="formLink">Don't have an account yet? <u>Sign Up here</u> </Link>
