@@ -6,51 +6,37 @@ export const LOGIN_USER = 'LOGIN_USER';
 export const LOAD_PROGRESS = 'LOAD_PROGRESS';
 export const LOGOUT_USER = 'LOGOUT_USER';
 
-export const changeHeaderTitle = (title, headerType) => {
-  return {
-    type: CHANGE_HEADER_FORMAT,
-    title,
-    headerType,
-  };
-}
+export const changeHeaderTitle = (title, headerType) => ({
+  type: CHANGE_HEADER_FORMAT,
+  title,
+  headerType,
+});
 
-export const changeActiveTab = activeTab => {
-  return {
-    type: CHANGE_ACTIVE_TAB,
-    activeTab,
-  };
-}
+export const changeActiveTab = activeTab => ({
+  type: CHANGE_ACTIVE_TAB,
+  activeTab,
+});
 
-export const loadCategoriesList = categories => {
-  return {
-    type: LOAD_CATEGORIES_LIST,
-    categories
-  }
-}
+export const loadCategoriesList = categories => ({
+  type: LOAD_CATEGORIES_LIST,
+  categories,
+});
 
-export const setMeasureItem = measureItem => {
-  return{
-    type: SET_MEASURE_ITEM,
-    measureItem
-  }
-}
+export const setMeasureItem = measureItem => ({
+  type: SET_MEASURE_ITEM,
+  measureItem,
+});
 
-export const loginUser = user => {
-  return {
-    type: LOGIN_USER,
-    user
-  }
-}
+export const loginUser = user => ({
+  type: LOGIN_USER,
+  user,
+});
 
-export const loadProgress = progress => {
-  return {
-    type: LOAD_PROGRESS,
-    progress,
-  }
-}
+export const loadProgress = progress => ({
+  type: LOAD_PROGRESS,
+  progress,
+});
 
-export const logOutUser = () => {
-  return {
-    type: LOGOUT_USER,
-  }
-}
+export const logOutUser = () => ({
+  type: LOGOUT_USER,
+});

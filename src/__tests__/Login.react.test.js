@@ -1,16 +1,12 @@
-
 import React from 'react';
-import CategoryItem from '../components/CategoryItem';
-import { render as rtlRender, screen, fireEvent } from '@testing-library/react';
+import { render as rtlRender, screen } from '@testing-library/react';
 import { HashRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import rootReducer from '../reducers';
-import Header from '../components/Header';
 import Login from '../components/Login';
-import { loginUser } from '../actions';
 
-let initialStateBase = {
+const initialStateBase = {
   pageNavigation: {
     headerTitle: '',
     headerType: 0,
@@ -23,7 +19,7 @@ let initialStateBase = {
   },
   progress: [],
 };
-let storeBase = createStore(rootReducer, initialStateBase);
+const storeBase = createStore(rootReducer, initialStateBase);
 
 function render(
   ui,
@@ -36,7 +32,7 @@ function render(
   function Wrapper({ children }) {
     return (
       <Provider store={store}>
-        <Router >
+        <Router>
           {' '}
           {children}
           {' '}

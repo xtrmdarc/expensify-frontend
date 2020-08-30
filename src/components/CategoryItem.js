@@ -1,16 +1,22 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import TestImage from '../assets/img/test.svg';
-import arrowIcon from '../assets/img/right_arrow.svg';
+import PropTypes from 'prop-types';
 
 const CategoryItem = props => {
   const { name, id } = props.categoryData;
 
   return (
-    <Link to={`/expense/${id}`} href="#" className="categoryItem">
+    <Link to={`/expense/${id}`} className="categoryItem">
       <span>{name}</span>
     </Link>
   );
-}
+};
+
+CategoryItem.propTypes = {
+  categoryData: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
+  }),
+};
 
 export default CategoryItem;

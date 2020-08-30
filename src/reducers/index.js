@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import  pageNavigationReducer from './pageNavigation';
+import pageNavigationReducer from './pageNavigation';
 import categoriesListReducer from './categoriesList';
 import measureItemReducer from './measureItem';
 import userReducer from './user';

@@ -1,8 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { changeHeaderTitle, setMeasureItem, changeActiveTab } from '../actions';
 import expensifyApi from '../api/expensify';
-import { withRouter } from 'react-router-dom';
 
 class AddMeasure extends React.Component {
   constructor(props) {
@@ -11,17 +12,18 @@ class AddMeasure extends React.Component {
       amountValue: '',
       dateValue: '',
       errorSubmission: '',
-    }
-    this.props.changeHeader('Add measurement', 2);
+    };
+    const { changeHeader } = this.props;
+    changeHeader('Add measurement', 2);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
 
   componentDidMount() {
     const { id } = this.props.match.params;
-    const { setActiveTab } = this.props;
-    expensifyApi.getCategoryInfo(id).then( info => {
-      this.props.setMeasureItem(info)
+    const { setActiveTab, setMeasureItem } = this.props;
+    expensifyApi.getCategoryInfo(id).then(info => {
+      setMeasureItem(info);
     });
     setActiveTab('list');
   }
@@ -30,18 +32,16 @@ class AddMeasure extends React.Component {
     let val = e.target.value;
     const elId = e.target.id;
 
-    if(elId === 'amountValue') {
+    if (elId === 'amountValue') {
       val = e.target.value.replace(/[^(\d.)]/g, '');
       let firstDotFound = false;
       const valArr = val.split('');
       val = '';
-      valArr.forEach( c => {
-        if(firstDotFound) {
-          if(c != '.')
-            val += c;
-        }
-        else {
-          if(c === '.') {
+      valArr.forEach(c => {
+        if (firstDotFound) {
+          if (c != '.') val += c;
+        } else {
+          if (c === '.') {
             firstDotFound = true;
           }
           val += c;
@@ -57,14 +57,13 @@ class AddMeasure extends React.Component {
   handleSubmit() {
     const { user, measureItem, loadProgress } = this.props;
     const { amountValue, dateValue } = this.state;
-    if ( amountValue === '0.00' || !parseFloat(this.state.amountValue))
-    {
+    if (amountValue === '0.00' || !parseFloat(amountValue)) {
       this.setState({
         errorSubmission: "Expense amount can't be blank",
       });
       return;
     }
-    if( dateValue === '' ) {
+    if (dateValue === '') {
       this.setState({
         errorSubmission: 'Specify a date before submitting',
       });
@@ -72,30 +71,34 @@ class AddMeasure extends React.Component {
     }
 
     const measurementObj = {
-      value: parseFloat(this.state.amountValue) ? parseFloat(this.state.amountValue) : 0.00,
-      date: this.state.dateValue,
+      value: parseFloat(amountValue) ? parseFloat(amountValue) : 0.00,
+      date: dateValue,
       user_id: user.id,
       ex_cat_id: measureItem.id,
     };
 
     expensifyApi.createNewMeasurement(measurementObj)
-    .then(p => {
-      loadProgress();
-    })
-    .catch(e => e);
+      .then(() => {
+        loadProgress();
+      })
+      .catch(e => e);
     this.props.history.push('/');
   }
 
-  render() { 
-    const {measureItem}  = this.props;
+  render() {
+    const { measureItem } = this.props;
     const { errorSubmission, amountValue } = this.state;
-    return ( 
+    return (
       <div className="addMeasure">
         <div className="pageHeader">
-          <h2 className="pageTitle">{measureItem.name} expense</h2>
+          <h2 className="pageTitle">
+            {measureItem.name}
+            {' '}
+            expense
+          </h2>
         </div>
         <div className="mainContent">
-          <input id="amountValue" className="valueInput" type="text" placeholder="$0.00" onChange={this.handleChange} value={amountValue}/>
+          <input id="amountValue" className="valueInput" type="text" placeholder="$0.00" onChange={this.handleChange} value={amountValue} />
           <label htmlFor="date">
             Date
             <input id="dateValue" type="date" onChange={this.handleChange} />
@@ -110,15 +113,32 @@ class AddMeasure extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = state => ({
   measureItem: state.addMeasureItem,
   user: state.user,
 });
 
 const mapDispatchToProps = dispatch => ({
-  changeHeader: (title) => dispatch(changeHeaderTitle(title, 2)),
-  setMeasureItem: (measureItem) => dispatch(setMeasureItem(measureItem)),
-  setActiveTab: (tabName) => dispatch(changeActiveTab(tabName)),
+  changeHeader: title => dispatch(changeHeaderTitle(title, 2)),
+  setMeasureItem: measureItem => dispatch(setMeasureItem(measureItem)),
+  setActiveTab: tabName => dispatch(changeActiveTab(tabName)),
 });
+
+AddMeasure.propTypes = {
+  changeHeader: PropTypes.func.isRequired,
+  match: PropTypes.shape({
+    params: PropTypes.object,
+  }).isRequired,
+  setActiveTab: PropTypes.func.isRequired,
+  setMeasureItem: PropTypes.func.isRequired,
+  loadProgress: PropTypes.func.isRequired,
+  measureItem: PropTypes.shape({
+    id: PropTypes.number,
+    name: PropTypes.string,
+  }).isRequired,
+  user: PropTypes.shape({
+    id: PropTypes.number,
+  }).isRequired,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(AddMeasure));

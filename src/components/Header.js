@@ -1,16 +1,24 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 const Header = props => {
+  const { headerType, headerTitle, logOutUser } = props;
   return (
     <header>
-      <Link to="/" className={`buttonNav ${props.headerType == 1 ? 'hidden' : ''}`} href="#">
+      <Link to="/" className={`buttonNav ${headerType === 1 ? 'hidden' : ''}`}>
         Back
       </Link>
-      <span className="pageTitle">{props.headerTitle}</span>
-      <a className="buttonNav" href="#" onClick={props.logOutUser}>Log out</a>
+      <span className="pageTitle">{headerTitle}</span>
+      <button className="buttonNav" href="#" onClick={logOutUser}>Log out</button>
     </header>
   );
-}
+};
+
+Header.propTypes = {
+  headerType: PropTypes.number.isRequired,
+  headerTitle: PropTypes.string.isRequired,
+  logOutUser: PropTypes.func.isRequired,
+};
 
 export default Header;

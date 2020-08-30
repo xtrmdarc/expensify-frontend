@@ -1,13 +1,13 @@
 import React from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import CategoryList from './CategoryList';
 import Header from '../components/Header';
 import FooterNav from '../components/FooterNav';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import AddMeasure from './AddMeasure';
-import { connect } from 'react-redux';
 import { loadCategoriesList, loadProgress, logOutUser } from '../actions';
 import expensifyApi from '../api/expensify';
-import Login from '../components/Login';
 import Progress from './Progress';
 
 class App extends React.Component {
@@ -15,43 +15,44 @@ class App extends React.Component {
     super(props);
     this.loadUserProgress = this.loadUserProgress.bind(this);
   }
-  
+
+  componentDidMount() {
+    expensifyApi.listCategories().then(p => {
+      this.props.updateCategoriesList(p);
+    });
+    this.loadUserProgress();
+  }
+
   loadUserProgress() {
     const { user } = this.props;
 
-    expensifyApi.getProgress(user.id).then( p => {
-      this.props.loadProgress(p)
+    expensifyApi.getProgress(user.id).then(p => {
+      this.props.loadProgress(p);
     });
-  }
-
-  componentDidMount() {
-    expensifyApi.listCategories().then( p => {
-      this.props.updateCategoriesList(p)
-    });
-    this.loadUserProgress();
-    
   }
 
   render() {
-    const{ headerTitle, headerType, activeTab, user, loadProgress, logOutUser } = this.props;
+    const {
+      headerTitle, headerType, activeTab, user, loadProgress, logOutUser,
+    } = this.props;
 
     return (
       <div>
         <Router>
-          <Header headerTitle={headerTitle} headerType={headerType} logOutUser={logOutUser}/>
-            <div className="contentWrapper">
-              <Switch>
-                <Route exact path="/expense/:id">
-                  <AddMeasure updateTitle={this.updateTitle} loadProgress={this.loadUserProgress}  />
-                </Route>
-                <Route exact path="/progress/:id">
-                  <Progress user={user} />
-                </Route>
-                <Route path="/">
-                  <CategoryList updateTitle={this.updateTitle} />
-                </Route>
-              </Switch>
-            </div>
+          <Header headerTitle={headerTitle} headerType={headerType} logOutUser={logOutUser} />
+          <div className="contentWrapper">
+            <Switch>
+              <Route exact path="/expense/:id">
+                <AddMeasure updateTitle={this.updateTitle} loadProgress={this.loadUserProgress} />
+              </Route>
+              <Route exact path="/progress/:id">
+                <Progress user={user} />
+              </Route>
+              <Route path="/">
+                <CategoryList updateTitle={this.updateTitle} />
+              </Route>
+            </Switch>
+          </div>
           <FooterNav actualTab={activeTab} userId={user.id} />
         </Router>
       </div>
@@ -71,5 +72,17 @@ const mapDispatchToProps = dispatch => ({
   loadProgress: progress => dispatch(loadProgress(progress)),
   logOutUser: () => dispatch(logOutUser()),
 });
+
+App.propTypes = {
+  user: PropTypes.shape({
+    id: PropTypes.number,
+  }).isRequired,
+  loadProgress: PropTypes.func.isRequired,
+  updateCategoriesList: PropTypes.func.isRequired,
+  headerTitle: PropTypes.string.isRequired,
+  headerType: PropTypes.number.isRequired,
+  activeTab: PropTypes.string.isRequired,
+  logOutUser: PropTypes.func.isRequired,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

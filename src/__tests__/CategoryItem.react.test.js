@@ -1,11 +1,9 @@
-
 import React from 'react';
-import CategoryItem from '../components/CategoryItem';
-import { render as rtlRender, screen, fireEvent } from '@testing-library/react';
+import { render as rtlRender, screen } from '@testing-library/react';
 import { HashRouter as Router } from 'react-router-dom';
-import renderer from 'react-test-renderer';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
+import CategoryItem from '../components/CategoryItem';
 import rootReducer from '../reducers';
 
 function render(
@@ -20,7 +18,7 @@ function render(
       categoriesList: [],
       addMeasureItem: {},
       user: {
-    
+
       },
       progress: [],
     },
@@ -31,7 +29,7 @@ function render(
   function Wrapper({ children }) {
     return (
       <Provider store={store}>
-        <Router >
+        <Router>
           {' '}
           {children}
           {' '}
@@ -49,7 +47,7 @@ test('CategoryItem name renders correctly', () => {
     id: 1,
   };
   const component = render(
-    <CategoryItem categoryData={categoryData} />
+    <CategoryItem categoryData={categoryData} />,
   );
 
   expect(screen.getByText(categoryData.name)).toBeDefined();

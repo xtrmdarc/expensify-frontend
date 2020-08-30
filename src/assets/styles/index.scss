@@ -33,7 +33,9 @@ header {
     width: 50px;
     font-size: 12px;
     text-align: center;
-
+    background-color: transparent;
+    border: none;
+    color: white;
     &.hidden {
       visibility: hidden;
     }
