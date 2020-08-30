@@ -6,6 +6,7 @@ import { createStore } from 'redux';
 import rootReducer from '../reducers';
 import Login from '../components/Login';
 
+/* eslint-disable */
 const initialStateBase = {
   pageNavigation: {
     headerTitle: '',
@@ -44,6 +45,7 @@ function render(
   return rtlRender(ui, { wrapper: Wrapper, ...renderOptions });
 }
 
+/* eslint-enable */
 test('Login username input renders correctly', () => {
   const loginUser = jest.fn();
   render(<Login loginUser={loginUser} />);

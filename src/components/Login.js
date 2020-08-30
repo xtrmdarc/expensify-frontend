@@ -58,7 +58,7 @@ class Login extends React.Component {
             Password
             <input data-testid="password" id="passwordInput" value={passwordInput} type="password" onChange={this.handleChange} />
           </label>
-          <button data-testid="loginBtn" className="cta" onClick={this.handleSubmit}>
+          <button type="button" data-testid="loginBtn" className="cta" onClick={this.handleSubmit}>
             Log in
           </button>
           <Link to="/signUp" className="formLink">

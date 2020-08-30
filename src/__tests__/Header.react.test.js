@@ -6,6 +6,7 @@ import { createStore } from 'redux';
 import rootReducer from '../reducers';
 import Header from '../components/Header';
 
+/* eslint-disable react/prop-types */
 function render(
   ui,
   {
@@ -41,6 +42,7 @@ function render(
   return rtlRender(ui, { wrapper: Wrapper, ...renderOptions });
 }
 
+/* eslint-enable react/prop-types */
 test('Header title renders correctly', () => {
   const headerTitle = 'Choose category';
   const headerType = 1;
@@ -52,7 +54,7 @@ test('Header title renders correctly', () => {
   expect(screen.getByText('Choose category')).toBeDefined();
 });
 
-test('Header does not render back button if headerType equals 1 ', () => {
+test('Header does not render back button if headerType equals 1', () => {
   const headerTitle = 'Choose category';
   const headerType = 1;
   const logOutUser = () => {};
@@ -63,7 +65,7 @@ test('Header does not render back button if headerType equals 1 ', () => {
   expect(screen.getByText('Back').className).toMatch(/hidden/);
 });
 
-test('Header does render back button if headerType is not equal to 1', () => {
+test('Header does render back button if headerType is not equal to 1', () => {
   const headerTitle = 'Choose category';
   const headerType = 2;
   const logOutUser = () => {};

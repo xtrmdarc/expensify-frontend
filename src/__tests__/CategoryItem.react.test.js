@@ -6,6 +6,7 @@ import { createStore } from 'redux';
 import CategoryItem from '../components/CategoryItem';
 import rootReducer from '../reducers';
 
+/* eslint-disable react/prop-types */
 function render(
   ui,
   {
@@ -41,12 +42,13 @@ function render(
   return rtlRender(ui, { wrapper: Wrapper, ...renderOptions });
 }
 
+/* eslint-enable react/prop-types */
 test('CategoryItem name renders correctly', () => {
   const categoryData = {
     name: 'Utilities',
     id: 1,
   };
-  const component = render(
+  render(
     <CategoryItem categoryData={categoryData} />,
   );
 

@@ -7,10 +7,8 @@ import CategoryItem from '../components/CategoryItem';
 class CategoryList extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      categories: [],
-    };
-    this.props.changeHeader('Choose category', 1);
+    const { changeHeader } = this.props;
+    changeHeader('Choose category', 1);
   }
 
   componentDidMount() {
@@ -19,9 +17,10 @@ class CategoryList extends React.Component {
   }
 
   render() {
+    const { categoriesList } = this.props;
     return (
       <div className="categoriesWrapper">
-        {this.props.categoriesList.map(p => (
+        {categoriesList.map(p => (
           <CategoryItem key={p.name} categoryData={p} />
         ))}
       </div>
@@ -33,7 +32,7 @@ const mapStateToProps = state => ({
   categoriesList: state.categoriesList,
 });
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = dispatch => ({
   changeHeader: title => dispatch(changeHeaderTitle(title, 1)),
   setActiveTab: tabName => dispatch(changeActiveTab(tabName)),
 });
@@ -41,7 +40,10 @@ const mapDispatchToProps = dispatch => ({
 CategoryList.propTypes = {
   changeHeader: PropTypes.func.isRequired,
   setActiveTab: PropTypes.func.isRequired,
-  categoriesList: PropTypes.array.isRequired,
+  categoriesList: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number,
+    name: PropTypes.string,
+  })).isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CategoryList);

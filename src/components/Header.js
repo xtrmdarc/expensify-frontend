@@ -10,7 +10,7 @@ const Header = props => {
         Back
       </Link>
       <span className="pageTitle">{headerTitle}</span>
-      <button className="buttonNav" href="#" onClick={logOutUser}>Log out</button>
+      <button type="button" className="buttonNav" href="#" onClick={logOutUser}>Log out</button>
     </header>
   );
 };

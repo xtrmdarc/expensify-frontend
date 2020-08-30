@@ -17,23 +17,24 @@ class App extends React.Component {
   }
 
   componentDidMount() {
+    const { updateCategoriesList } = this.props;
     expensifyApi.listCategories().then(p => {
-      this.props.updateCategoriesList(p);
+      updateCategoriesList(p);
     });
     this.loadUserProgress();
   }
 
   loadUserProgress() {
-    const { user } = this.props;
+    const { user, loadProgress } = this.props;
 
     expensifyApi.getProgress(user.id).then(p => {
-      this.props.loadProgress(p);
+      loadProgress(p);
     });
   }
 
   render() {
     const {
-      headerTitle, headerType, activeTab, user, loadProgress, logOutUser,
+      headerTitle, headerType, activeTab, user, logOutUser,
     } = this.props;
 
     return (

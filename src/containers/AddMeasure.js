@@ -20,8 +20,9 @@ class AddMeasure extends React.Component {
   }
 
   componentDidMount() {
-    const { id } = this.props.match.params;
-    const { setActiveTab, setMeasureItem } = this.props;
+    const { setActiveTab, setMeasureItem, match } = this.props;
+    const { id } = match.params;
+
     expensifyApi.getCategoryInfo(id).then(info => {
       setMeasureItem(info);
     });
@@ -39,7 +40,7 @@ class AddMeasure extends React.Component {
       val = '';
       valArr.forEach(c => {
         if (firstDotFound) {
-          if (c != '.') val += c;
+          if (c !== '.') val += c;
         } else {
           if (c === '.') {
             firstDotFound = true;
@@ -55,7 +56,9 @@ class AddMeasure extends React.Component {
   }
 
   handleSubmit() {
-    const { user, measureItem, loadProgress } = this.props;
+    const {
+      user, measureItem, loadProgress, history,
+    } = this.props;
     const { amountValue, dateValue } = this.state;
     if (amountValue === '0.00' || !parseFloat(amountValue)) {
       this.setState({
@@ -82,7 +85,8 @@ class AddMeasure extends React.Component {
         loadProgress();
       })
       .catch(e => e);
-    this.props.history.push('/');
+
+    history.push('/');
   }
 
   render() {
@@ -104,7 +108,7 @@ class AddMeasure extends React.Component {
             <input id="dateValue" type="date" onChange={this.handleChange} />
           </label>
           {errorSubmission !== '' ? <span className="errorSubmission">{errorSubmission}</span> : ''}
-          <button className="cta" onClick={this.handleSubmit} value={this.state.dateValue}>
+          <button type="button" className="cta" onClick={this.handleSubmit}>
             Add
           </button>
         </div>
@@ -118,7 +122,7 @@ const mapStateToProps = state => ({
   user: state.user,
 });
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = dispatch => ({
   changeHeader: title => dispatch(changeHeaderTitle(title, 2)),
   setMeasureItem: measureItem => dispatch(setMeasureItem(measureItem)),
   setActiveTab: tabName => dispatch(changeActiveTab(tabName)),
@@ -127,7 +131,9 @@ const mapDispatchToProps = dispatch => ({
 AddMeasure.propTypes = {
   changeHeader: PropTypes.func.isRequired,
   match: PropTypes.shape({
-    params: PropTypes.object,
+    params: PropTypes.shape({
+      id: PropTypes.string,
+    }),
   }).isRequired,
   setActiveTab: PropTypes.func.isRequired,
   setMeasureItem: PropTypes.func.isRequired,
@@ -138,6 +144,9 @@ AddMeasure.propTypes = {
   }).isRequired,
   user: PropTypes.shape({
     id: PropTypes.number,
+  }).isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func,
   }).isRequired,
 };
 

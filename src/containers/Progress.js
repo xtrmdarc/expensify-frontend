@@ -38,7 +38,7 @@ class Progress extends React.Component {
     const today = new Date(Date.now());
 
     let prevItem;
-
+    /* eslint-disable no-restricted-syntax */
     for (const [key, value] of orderedProgress) {
       const progressItem = (
         <ProgressItem
@@ -74,12 +74,13 @@ class Progress extends React.Component {
     );
   }
 }
+/* eslint-enable no-restricted-syntax */
 
 const mapStateToProps = state => ({
   progress: state.progress,
 });
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = dispatch => ({
   setActiveTab: tabName => dispatch(changeActiveTab(tabName)),
   changeHeader: headerTitle => dispatch(changeHeaderTitle(headerTitle, 1)),
 });
@@ -87,7 +88,9 @@ const mapDispatchToProps = dispatch => ({
 Progress.propTypes = {
   setActiveTab: PropTypes.func.isRequired,
   changeHeader: PropTypes.func.isRequired,
-  progress: PropTypes.array.isRequired,
+  progress: PropTypes.arrayOf(PropTypes.shape({
+    amount: PropTypes.number,
+  })).isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Progress);

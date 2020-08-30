@@ -49,6 +49,10 @@ const ProgressItem = props => {
   );
 };
 
+ProgressItem.defaultProps = {
+  prevData: null,
+};
+
 ProgressItem.propTypes = {
   progressData: PropTypes.shape({
     date: PropTypes.string,
@@ -57,7 +61,7 @@ ProgressItem.propTypes = {
   prevData: PropTypes.shape({
     date: PropTypes.string,
     totalAmount: PropTypes.number,
-  }).isRequired,
+  }),
 };
 
 export default ProgressItem;
