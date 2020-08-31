@@ -70,7 +70,7 @@ class SignUp extends React.Component {
           </button>
           <Link to="/" className="formLink">
             Already have an account?
-            <u>Log in here</u>
+            <u> Log in here</u>
           </Link>
         </div>
       </div>
