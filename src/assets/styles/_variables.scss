@@ -25,6 +25,10 @@ $lightGray:#f3f3f3;
 a {
   text-decoration: none;
   color: inherit;
+
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .cta {
