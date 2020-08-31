@@ -10,11 +10,11 @@ const FooterNav = props => {
   return (
     <footer>
       <nav>
-        <Link to="/" className={`navItem ${actualTab === 'list' ? 'active' : ''}`}>
+        <Link to="/" className={`navItem ${actualTab === 'list' ? 'active' : ''}`} data-testid="listTab">
           <img src={addIcon} alt="add icon" />
           <span>Add expense</span>
         </Link>
-        <Link to={`/progress/${userId}`} className={`navItem ${actualTab === 'progress' ? 'active' : ''}`}>
+        <Link to={`/progress/${userId}`} className={`navItem ${actualTab === 'progress' ? 'active' : ''}`} data-testid="progressTab">
           <img src={growIcon} alt="grow icon" />
           <span>Track it</span>
         </Link>
