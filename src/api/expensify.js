@@ -1,18 +1,18 @@
 const expensifyApi = (() => {
   const listCategories = async () => {
-    const response = await fetch('/expense_category/index');
+    const response = await fetch('/api/expense_category/index');
     const categories = await response.json();
     return categories;
   };
 
   const getCategoryInfo = async catId => {
-    const response = await fetch(`/category/${catId}`);
+    const response = await fetch(`/api/category/${catId}`);
     const catInfo = await response.json();
     return catInfo;
   };
 
   const createNewMeasurement = async measurementObj => {
-    const response = await fetch('/measurement/create', {
+    const response = await fetch('/api/measurement/create', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -24,7 +24,7 @@ const expensifyApi = (() => {
   };
 
   const loginUser = async (username, password) => {
-    const response = await fetch('/users/login', {
+    const response = await fetch('/api/users/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -43,13 +43,13 @@ const expensifyApi = (() => {
   };
 
   const getProgress = async userId => {
-    const response = await fetch(`/progress/${userId}`);
+    const response = await fetch(`/api/progress/${userId}`);
     const data = await response.json();
     return data;
   };
 
   const signUpUser = async user => {
-    const response = await fetch('/users', {
+    const response = await fetch('/api/users', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
