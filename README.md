@@ -84,7 +84,7 @@ Your app is ready to be deployed!
 
 Contributions, issues, and feature requests are welcome!
 
-Feel free to check the [issues page](https://github.com/xtrmdarc/stockly/issues).
+Feel free to check the [issues page](https://github.com/xtrmdarc/expensify-frontend/issues).
 
 ## Show your support
 
