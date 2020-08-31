@@ -1,6 +1,7 @@
 {
   "root": "public/",
   "routes": {
+    "/public/*": "/public/",
     "/**": "index.html"
   },
   "proxies": {
