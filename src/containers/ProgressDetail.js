@@ -54,7 +54,6 @@ class ProgressDetail extends React.Component {
 
   render() {
     const { progressDetail } = this.state;
-    console.log(progressDetail);
     return (
       <div className="progressDetail">
         { progressDetail.map(p => (
