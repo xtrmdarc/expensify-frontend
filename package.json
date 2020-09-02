@@ -16,7 +16,7 @@
     "react-scripts": "3.4.3",
     "redux": "^4.0.5"
   },
-  "proxy": "https://xtrmdarc-expensify.herokuapp.com/",
+  "proxy": "http://localhost:3001",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",

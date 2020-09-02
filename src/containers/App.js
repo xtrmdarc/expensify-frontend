@@ -47,7 +47,7 @@ class App extends React.Component {
                 <AddMeasure updateTitle={this.updateTitle} loadProgress={this.loadUserProgress} />
               </Route>
               <Route exact path="/progress/:id">
-                <Progress user={user} />
+                <Progress user={user} loadProgress={this.loadUserProgress} />
               </Route>
               <Route path="/">
                 <CategoryList updateTitle={this.updateTitle} />

@@ -6,9 +6,10 @@ import ProgressItem from '../components/ProgressItem';
 
 class Progress extends React.Component {
   componentDidMount() {
-    const { setActiveTab, changeHeader } = this.props;
+    const { setActiveTab, changeHeader, loadProgress } = this.props;
     setActiveTab('progress');
     changeHeader('Track monthly expenses');
+    loadProgress();
   }
 
   render() {
