@@ -79,7 +79,7 @@ ProgressDetail.propTypes = {
   changeHeader: PropTypes.func.isRequired,
   match: PropTypes.shape({
     params: PropTypes.shape({
-      month: PropTypes.number,
+      month: PropTypes.string,
     }),
   }).isRequired,
   categoriesList: PropTypes.arrayOf(PropTypes.shape({
