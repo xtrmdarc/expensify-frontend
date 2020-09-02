@@ -349,9 +349,12 @@ footer {
   display: flex;
   flex-wrap: wrap;
   background-color: $lightGray;
+
   .progressDetailItem {
     @include cardTwoHalves();
+
     flex-direction: column;
+
     .amountValue {
       font-size: 30px;
     }
