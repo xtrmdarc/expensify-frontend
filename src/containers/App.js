@@ -11,11 +11,6 @@ import expensifyApi from '../api/expensify';
 import Progress from './Progress';
 
 class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.loadUserProgress = this.loadUserProgress.bind(this);
-  }
-
   componentDidMount() {
     const { updateCategoriesList } = this.props;
     expensifyApi.listCategories().then(p => {
@@ -24,7 +19,7 @@ class App extends React.Component {
     this.loadUserProgress();
   }
 
-  loadUserProgress() {
+  loadUserProgress = () => {
     const { user, loadProgress } = this.props;
 
     expensifyApi.getProgress(user.id).then(p => {

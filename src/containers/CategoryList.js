@@ -5,14 +5,9 @@ import { changeHeaderTitle, changeActiveTab } from '../actions';
 import CategoryItem from '../components/CategoryItem';
 
 class CategoryList extends React.Component {
-  constructor(props) {
-    super(props);
-    const { changeHeader } = this.props;
-    changeHeader('Choose category', 1);
-  }
-
   componentDidMount() {
-    const { setActiveTab } = this.props;
+    const { setActiveTab, changeHeader } = this.props;
+    changeHeader('Choose category', 1);
     setActiveTab('list');
   }
 

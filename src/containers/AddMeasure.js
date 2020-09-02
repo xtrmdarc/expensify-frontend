@@ -6,22 +6,17 @@ import { changeHeaderTitle, setMeasureItem, changeActiveTab } from '../actions';
 import expensifyApi from '../api/expensify';
 
 class AddMeasure extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      amountValue: '',
-      dateValue: '',
-      errorSubmission: '',
-    };
-    const { changeHeader } = this.props;
-    changeHeader('Add measurement', 2);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-  }
+  state = {
+    amountValue: '',
+    dateValue: '',
+    errorSubmission: '',
+  };
 
   componentDidMount() {
-    const { setActiveTab, setMeasureItem, match } = this.props;
+    const { setActiveTab, setMeasureItem, match, changeHeader } = this.props;
     const { id } = match.params;
+
+    changeHeader('Add measurement', 2);
 
     expensifyApi.getCategoryInfo(id).then(info => {
       setMeasureItem(info);
@@ -29,7 +24,7 @@ class AddMeasure extends React.Component {
     setActiveTab('list');
   }
 
-  handleChange(e) {
+  handleChange = (e) => {
     let val = e.target.value;
     const elId = e.target.id;
 
@@ -55,7 +50,7 @@ class AddMeasure extends React.Component {
     });
   }
 
-  handleSubmit() {
+  handleSubmit = () => {
     const {
       user, measureItem, loadProgress, history,
     } = this.props;
