@@ -92,6 +92,7 @@ Progress.propTypes = {
   progress: PropTypes.arrayOf(PropTypes.shape({
     amount: PropTypes.number,
   })).isRequired,
+  loadProgress: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Progress);

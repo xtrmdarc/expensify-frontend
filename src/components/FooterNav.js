@@ -24,12 +24,8 @@ const FooterNav = props => {
 };
 
 FooterNav.propTypes = {
-  userId: 1,
-};
-
-FooterNav.propTypes = {
   actualTab: PropTypes.string.isRequired,
-  userId: PropTypes.number,
+  userId: PropTypes.number.isRequired,
 };
 
 export default FooterNav;
