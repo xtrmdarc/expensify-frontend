@@ -4,20 +4,25 @@ import PropTypes from 'prop-types';
 import expensifyApi from '../api/expensify';
 
 class SignUp extends React.Component {
-  state = {
-    passwordInput: '',
-    usernameInput: '',
-    passwordConfirmationInput: '',
-    errorsSubmission: [],
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      passwordInput: '',
+      usernameInput: '',
+      passwordConfirmationInput: '',
+      errorsSubmission: [],
+    };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
 
-  handleChange = (e) => {
+  handleChange(e) {
     this.setState({
       [e.target.id]: e.target.value,
     });
   }
 
-  handleSubmit = () => {
+  handleSubmit() {
     const { usernameInput, passwordInput, passwordConfirmationInput } = this.state;
     const newUser = {
       username: usernameInput,

@@ -4,8 +4,9 @@ import { HashRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import rootReducer from '../reducers';
+/* eslint-disable */
 import Login from '../components/Login';
-
+/* eslint-enable */
 /* eslint-disable */
 const initialStateBase = {
   pageNavigation: {

@@ -6,6 +6,7 @@ const store = createStore(rootReducer, {
     headerTitle: '',
     headerType: 0,
     activeTab: '',
+    prevPage: '/',
   },
   categoriesList: [],
   addMeasureItem: {},

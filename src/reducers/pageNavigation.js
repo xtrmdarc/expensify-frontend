@@ -3,7 +3,12 @@ import { CHANGE_HEADER_FORMAT, CHANGE_ACTIVE_TAB } from '../actions';
 const pageNavigationReducer = (state = {}, action) => {
   switch (action.type) {
     case CHANGE_HEADER_FORMAT: {
-      return { ...state, headerTitle: action.title, headerType: action.headerType };
+      return {
+        ...state,
+        headerTitle: action.title,
+        headerType: action.headerType,
+        prevPage: action.prevPage,
+      };
     }
     case CHANGE_ACTIVE_TAB: {
       return { ...state, activeTab: action.activeTab };

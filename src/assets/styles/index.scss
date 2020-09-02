@@ -131,17 +131,7 @@ header {
   min-height: 100%;
 
   .categoryItem {
-    width: calc((100% - (#{$closeSpace} * 4)) / 2);
-    margin: $closeSpace;
-    padding: $closeSpace;
-    border-radius: 8px;
-    height: calc(100vh / 3);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid rgba(122, 122, 122, 0.199);
-    background-color: white;
-    color: black;
+    @include cardTwoHalves();
 
     &:hover {
       background-color: $brandColor;
@@ -351,6 +341,19 @@ footer {
         margin-left: $closeSpace;
         height: 10px;
       }
+    }
+  }
+}
+
+.progressDetail {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: $lightGray;
+  .progressDetailItem {
+    @include cardTwoHalves();
+    flex-direction: column;
+    .amountValue {
+      font-size: 30px;
     }
   }
 }

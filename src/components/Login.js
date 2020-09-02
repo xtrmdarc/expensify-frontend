@@ -5,19 +5,24 @@ import logo from '../assets/img/logo.svg';
 import expensifyApi from '../api/expensify';
 
 class Login extends React.Component {
-  state = {
-    usernameInput: '',
-    passwordInput: '',
-    errorSubmit: '',
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      usernameInput: '',
+      passwordInput: '',
+      errorSubmit: '',
+    };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
 
-  handleChange = (e) => {
+  handleChange(e) {
     this.setState({
       [e.target.id]: e.target.value,
     });
-  };
+  }
 
-  handleSubmit = () => {
+  handleSubmit() {
     const { usernameInput, passwordInput } = this.state;
     const { loginUser } = this.props;
     expensifyApi.loginUser(usernameInput, passwordInput).then(user => {

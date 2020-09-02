@@ -6,10 +6,11 @@ export const LOGIN_USER = 'LOGIN_USER';
 export const LOAD_PROGRESS = 'LOAD_PROGRESS';
 export const LOGOUT_USER = 'LOGOUT_USER';
 
-export const changeHeaderTitle = (title, headerType) => ({
+export const changeHeaderTitle = (title, headerType, prevPage = '/') => ({
   type: CHANGE_HEADER_FORMAT,
   title,
   headerType,
+  prevPage,
 });
 
 export const changeActiveTab = activeTab => ({

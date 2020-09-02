@@ -2,8 +2,10 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+/* eslint-disable */
 import SignUp from '../components/SignUp';
 import Login from '../components/Login';
+/* eslint-enable */
 import { loginUser } from '../actions';
 
 const AuthenticationWrapper = props => {

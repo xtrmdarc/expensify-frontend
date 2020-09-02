@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import arrowImg from '../assets/img/right_arrow.svg';
 
 const ProgressItem = props => {
@@ -33,7 +34,7 @@ const ProgressItem = props => {
   }
 
   return (
-    <div className="progressItem">
+    <Link to={`/progress/month/${(new Date(progressData.date)).getMonth()}`} className="progressItem">
       <div className="leftSection">
         <h4>{progressDateString}</h4>
         {lastCicleDiff}
@@ -45,7 +46,7 @@ const ProgressItem = props => {
         </span>
         <img className="arrowIcon" src={arrowImg} alt="arrow icon" />
       </div>
-    </div>
+    </Link>
   );
 };
 

@@ -82,12 +82,25 @@ const expensifyApi = (() => {
     return data;
   };
 
+  const getProgressDetail = async (userId, month) => {
+    const { token } = store.getState().user;
+    const response = await fetch('/api/progress/month', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({ user_id: userId, month }),
+    });
+    const data = response.json();
+    return data;
+  };
+
   const signUpUser = async user => {
     const response = await fetch('/api/users', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        // 'Authorization': `Bearer ${token}`
       },
       body: JSON.stringify(user),
     });
@@ -108,6 +121,7 @@ const expensifyApi = (() => {
     getProgress,
     signUpUser,
     autoLogin,
+    getProgressDetail,
   };
 })();
 

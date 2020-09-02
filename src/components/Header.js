@@ -3,10 +3,12 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 const Header = props => {
-  const { headerType, headerTitle, logOutUser } = props;
+  const {
+    headerType, headerTitle, logOutUser, prevPage,
+  } = props;
   return (
     <header>
-      <Link to="/" className={`buttonNav ${headerType === 1 ? 'hidden' : ''}`}>
+      <Link to={`${prevPage}`} className={`buttonNav ${headerType === 1 ? 'hidden' : ''}`}>
         Back
       </Link>
       <span className="pageTitle">{headerTitle}</span>
@@ -19,6 +21,7 @@ Header.propTypes = {
   headerType: PropTypes.number.isRequired,
   headerTitle: PropTypes.string.isRequired,
   logOutUser: PropTypes.func.isRequired,
+  prevPage: PropTypes.string.isRequired,
 };
 
 export default Header;
