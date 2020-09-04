@@ -23,14 +23,18 @@ class App extends React.Component {
     super(props);
     this.loadUserProgress = this.loadUserProgress.bind(this);
     this.logoutUserApp = this.logoutUserApp.bind(this);
+    this.loginUserApp = this.loginUserApp.bind(this);
   }
 
   componentDidMount() {
-    const { updateCategoriesList } = this.props;
+    const { updateCategoriesList, user, loginUser } = this.props;
+    const loggedIn = Authentication.isValidLogin(user, loginUser);
+    if (!loggedIn) return;
 
     expensifyApi.listCategories().then(p => {
       updateCategoriesList(p);
     });
+
     this.loadUserProgress();
   }
 
@@ -48,6 +52,16 @@ class App extends React.Component {
     logOutUser();
   }
 
+  loginUserApp(user) {
+    const { loginUser, updateCategoriesList } = this.props;
+    Authentication.loginUser(user.token);
+
+    expensifyApi.listCategories().then(p => {
+      updateCategoriesList(p);
+    });
+    loginUser(user);
+  }
+
   render() {
     const {
       headerTitle, headerType, activeTab, user, loginUser,
@@ -61,10 +75,10 @@ class App extends React.Component {
         <Router>
           <Switch>
             <Route exact path="/login">
-              { !loggedIn ? <Login loginUser={loginUser} /> : <Redirect to="/" />}
+              { !loggedIn ? <Login loginUser={this.loginUserApp} /> : <Redirect to="/" />}
             </Route>
             <Route exact path="/signUp">
-              { !loggedIn ? <SignUp loginUser={loginUser} /> : <Redirect to="/" />}
+              { !loggedIn ? <SignUp loginUser={this.loginUserApp} /> : <Redirect to="/" />}
             </Route>
             <Route path="/">
               { loggedIn ? (

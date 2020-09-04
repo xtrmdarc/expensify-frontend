@@ -1,21 +1,19 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { changeHeaderTitle, setMeasureItem, changeActiveTab } from '../actions';
 import expensifyApi from '../api/expensify';
 
-class AddMeasure extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      amountValue: '',
-      dateValue: '',
-      errorSubmission: '',
-    };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
+class AddMeasure extends Component {
+  state = {
+    amountValue: '',
+    dateValue: '',
+    errorSubmission: '',
+  };
+  //   this.handleChange = this.handleChange.bind(this);
+  //   this.handleSubmit = this.handleSubmit.bind(this);
+  // }
 
   componentDidMount() {
     const {
@@ -31,7 +29,7 @@ class AddMeasure extends React.Component {
     setActiveTab('list');
   }
 
-  handleChange(e) {
+  handleChange = e => {
     let val = e.target.value;
     const elId = e.target.id;
 
@@ -57,7 +55,7 @@ class AddMeasure extends React.Component {
     });
   }
 
-  handleSubmit() {
+  handleSubmit = () => {
     const {
       user, measureItem, loadProgress, history,
     } = this.props;
