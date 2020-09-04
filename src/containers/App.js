@@ -77,10 +77,16 @@ class App extends React.Component {
                   />
                   <div className="contentWrapper">
                     <Route exact path="/expense/:id">
-                      <AddMeasure updateTitle={this.updateTitle} loadProgress={this.loadUserProgress} />
+                      <AddMeasure
+                        updateTitle={this.updateTitle}
+                        loadProgress={this.loadUserProgress}
+                      />
                     </Route>
                     <Route exact path="/progress/month/:month">
-                      <ProgressDetail userId={user.id} updateCategoriesList={updateCategoriesList} />
+                      <ProgressDetail
+                        userId={user.id}
+                        updateCategoriesList={updateCategoriesList}
+                      />
                     </Route>
                     <Route exact path="/progress/:id">
                       <Progress user={user} loadProgress={this.loadUserProgress} />

@@ -1,7 +1,6 @@
 const expensifyApi = (() => {
   const listCategories = async () => {
     const token = localStorage.getItem('userToken');
-    console.log(token);
     const response = await fetch('/api/expense_category/index', {
       method: 'GET',
       headers: {

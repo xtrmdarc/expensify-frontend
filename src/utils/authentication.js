@@ -1,7 +1,7 @@
 import expensifyApi from '../api/expensify';
 
 const Authentication = (() => {
-  const loginUser = token => {
+  const loginUser = token => {
     localStorage.setItem('userToken', token);
   };
 
@@ -9,7 +9,7 @@ const Authentication = (() => {
     let loggedIn = true;
     if (Object.keys(user).length === 0) {
       const userToken = localStorage.getItem('userToken');
-      console.log(user, userToken);
+
       if (userToken && userToken !== 'undefined' && userToken !== undefined) {
         expensifyApi.autoLogin(localStorage.getItem('userToken')).then(p => {
           loginUser(p.token);
