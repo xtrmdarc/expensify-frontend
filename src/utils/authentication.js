@@ -1,9 +1,9 @@
 import expensifyApi from '../api/expensify';
 
 const Authentication = (() => {
-  const loginUser = (token) => {
+  const loginUser = token => {
     localStorage.setItem('userToken', token);
-  }
+  };
 
   const isValidLogin = (user, pLoginUser) => {
     let loggedIn = true;
@@ -16,20 +16,18 @@ const Authentication = (() => {
           pLoginUser(p);
         });
         loggedIn = 'trying';
-      } 
-      else {
+      } else {
         loggedIn = false;
       }
-      
     }
     return loggedIn;
-  }
+  };
 
   const logout = () => {
     localStorage.removeItem('userToken');
-  }
+  };
 
-  return {loginUser, isValidLogin, logout};
+  return { loginUser, isValidLogin, logout };
 })();
 
 export default Authentication;

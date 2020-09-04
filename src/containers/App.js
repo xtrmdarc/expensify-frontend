@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  BrowserRouter as Router, Route, Switch , Redirect,
+  BrowserRouter as Router, Route, Switch, Redirect,
 } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -9,7 +9,7 @@ import Header from '../components/Header';
 import FooterNav from '../components/FooterNav';
 import AddMeasure from './AddMeasure';
 import {
-  loadCategoriesList, loadProgress, logOutUser, loginUser
+  loadCategoriesList, loadProgress, logOutUser, loginUser,
 } from '../actions';
 import expensifyApi from '../api/expensify';
 import Progress from './Progress';
@@ -17,7 +17,6 @@ import ProgressDetail from './ProgressDetail';
 import Authentication from '../utils/authentication';
 import Login from '../components/Login';
 import SignUp from '../components/SignUp';
-
 
 class App extends React.Component {
   constructor(props) {
@@ -58,44 +57,44 @@ class App extends React.Component {
     const loggedIn = Authentication.isValidLogin(user, loginUser);
 
     return (
-      loggedIn === 'trying' ? <div></div> : ( 
-      <Router>
-        <Switch>
-          <Route exact path="/login">
-            { !loggedIn ? <Login loginUser={loginUser} /> : <Redirect to="/" />}
-          </Route>
-          <Route exact path="/signUp">
-            { !loggedIn ? <SignUp loginUser={loginUser} /> : <Redirect to="/" />}
-          </Route>
-          <Route path="/">
-            { loggedIn ? (
-              <div>
-                <Header
-                  headerTitle={headerTitle}
-                  headerType={headerType}
-                  logOutUser={this.logoutUserApp}
-                  prevPage={prevPage}
-                />
-                <div className="contentWrapper">
-                  <Route exact path="/expense/:id">
-                    <AddMeasure updateTitle={this.updateTitle} loadProgress={this.loadUserProgress} />
-                  </Route>
-                  <Route exact path="/progress/month/:month">
-                    <ProgressDetail userId={user.id} updateCategoriesList={updateCategoriesList} />
-                  </Route>
-                  <Route exact path="/progress/:id">
-                    <Progress user={user} loadProgress={this.loadUserProgress} />
-                  </Route>
-                  <Route exact path="/">
-                    <CategoryList updateTitle={this.updateTitle} />
-                  </Route>
+      loggedIn === 'trying' ? <div /> : (
+        <Router>
+          <Switch>
+            <Route exact path="/login">
+              { !loggedIn ? <Login loginUser={loginUser} /> : <Redirect to="/" />}
+            </Route>
+            <Route exact path="/signUp">
+              { !loggedIn ? <SignUp loginUser={loginUser} /> : <Redirect to="/" />}
+            </Route>
+            <Route path="/">
+              { loggedIn ? (
+                <div>
+                  <Header
+                    headerTitle={headerTitle}
+                    headerType={headerType}
+                    logOutUser={this.logoutUserApp}
+                    prevPage={prevPage}
+                  />
+                  <div className="contentWrapper">
+                    <Route exact path="/expense/:id">
+                      <AddMeasure updateTitle={this.updateTitle} loadProgress={this.loadUserProgress} />
+                    </Route>
+                    <Route exact path="/progress/month/:month">
+                      <ProgressDetail userId={user.id} updateCategoriesList={updateCategoriesList} />
+                    </Route>
+                    <Route exact path="/progress/:id">
+                      <Progress user={user} loadProgress={this.loadUserProgress} />
+                    </Route>
+                    <Route exact path="/">
+                      <CategoryList updateTitle={this.updateTitle} />
+                    </Route>
+                  </div>
+                  <FooterNav actualTab={activeTab} userId={user.id} />
                 </div>
-                <FooterNav actualTab={activeTab} userId={user.id} />
-              </div>
-            ) : <Redirect to="/login" />}
-          </Route>
-        </Switch>
-      </Router>
+              ) : <Redirect to="/login" />}
+            </Route>
+          </Switch>
+        </Router>
       )
     );
   }

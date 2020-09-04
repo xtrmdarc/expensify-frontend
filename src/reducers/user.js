@@ -4,7 +4,7 @@ const userReducer = (state = {}, action) => {
   switch (action.type) {
     case LOGIN_USER: {
       console.log(localStorage.getItem('userToken'));
-      return { ...state, ...action.user.user};
+      return { ...state, ...action.user.user };
     }
     case LOGOUT_USER: {
       return {};

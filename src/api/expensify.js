@@ -1,4 +1,3 @@
-
 const expensifyApi = (() => {
   const listCategories = async () => {
     const token = localStorage.getItem('userToken');
