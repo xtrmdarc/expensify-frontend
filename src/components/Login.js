@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import logo from '../assets/img/logo.svg';
 import expensifyApi from '../api/expensify';
+import Authentication from '../utils/authentication';
 
 class Login extends React.Component {
   constructor(props) {
@@ -26,6 +27,7 @@ class Login extends React.Component {
     const { usernameInput, passwordInput } = this.state;
     const { loginUser } = this.props;
     expensifyApi.loginUser(usernameInput, passwordInput).then(user => {
+      Authentication.loginUser(user.token);
       loginUser(user);
     }).catch(error => {
       this.setState({

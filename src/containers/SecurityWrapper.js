@@ -8,7 +8,7 @@ import App from './App';
 import Login from '../components/Login';
 import SignUp from '../components/SignUp';
 import { loginUser } from '../actions';
-import expensifyApi from '../api/expensify';
+import Authentication from '../utils/authentication';
 
 const SecurityWrapper = props => {
   const {
@@ -16,19 +16,10 @@ const SecurityWrapper = props => {
     user,
   } = props;
 
-  let loggedIn = true;
-  if (Object.keys(user).filter(p => p !== 'token').length === 0) {
-    const userToken = localStorage.getItem('userToken');
-    if (userToken && userToken !== 'undefined' && userToken !== undefined) {
-      expensifyApi.autoLogin(localStorage.getItem('userToken')).then(p => {
-        loginUser(p);
-      });
-    } else {
-      loggedIn = false;
-    }
-  }
+  const loggedIn = Authentication.isValidLogin(user, loginUser);
 
   return (
+    loggedIn === 'trying' ? <div></div> : ( 
     <Router>
       <Switch>
         <Route exact path="/login">
@@ -42,6 +33,7 @@ const SecurityWrapper = props => {
         </Route>
       </Switch>
     </Router>
+    )
   );
 };
 

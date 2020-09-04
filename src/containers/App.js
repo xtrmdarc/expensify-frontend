@@ -14,11 +14,13 @@ import {
 import expensifyApi from '../api/expensify';
 import Progress from './Progress';
 import ProgressDetail from './ProgressDetail';
+import Authentication from '../utils/authentication';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.loadUserProgress = this.loadUserProgress.bind(this);
+    this.logoutUserApp = this.logoutUserApp.bind(this);
   }
 
   componentDidMount() {
@@ -38,9 +40,15 @@ class App extends React.Component {
     });
   }
 
+  logoutUserApp() {
+    const { logOutUser } = this.props;
+    Authentication.logout();
+    logOutUser();
+  }
+
   render() {
     const {
-      headerTitle, headerType, activeTab, user, logOutUser,
+      headerTitle, headerType, activeTab, user,
       prevPage, updateCategoriesList,
     } = this.props;
 
@@ -49,7 +57,7 @@ class App extends React.Component {
         <Header
           headerTitle={headerTitle}
           headerType={headerType}
-          logOutUser={logOutUser}
+          logOutUser={this.logoutUserApp}
           prevPage={prevPage}
         />
         <div className="contentWrapper">

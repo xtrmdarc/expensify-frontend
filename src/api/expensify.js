@@ -1,8 +1,8 @@
-import store from '../store';
 
 const expensifyApi = (() => {
   const listCategories = async () => {
-    const { token } = store.getState().user;
+    const token = localStorage.getItem('userToken');
+    console.log(token);
     const response = await fetch('/api/expense_category/index', {
       method: 'GET',
       headers: {
@@ -14,7 +14,7 @@ const expensifyApi = (() => {
   };
 
   const getCategoryInfo = async catId => {
-    const { token } = store.getState().user;
+    const token = localStorage.getItem('userToken');
     const response = await fetch(`/api/category/${catId}`, {
       method: 'GET',
       headers: {
@@ -26,7 +26,7 @@ const expensifyApi = (() => {
   };
 
   const createNewMeasurement = async measurementObj => {
-    const { token } = store.getState().user;
+    const token = localStorage.getItem('userToken');
     const response = await fetch('/api/measurement/create', {
       method: 'POST',
       headers: {
@@ -71,7 +71,7 @@ const expensifyApi = (() => {
   };
 
   const getProgress = async userId => {
-    const { token } = store.getState().user;
+    const token = localStorage.getItem('userToken');
     const response = await fetch(`/api/progress/${userId}`, {
       method: 'GET',
       headers: {
@@ -83,7 +83,7 @@ const expensifyApi = (() => {
   };
 
   const getProgressDetail = async (userId, month) => {
-    const { token } = store.getState().user;
+    const token = localStorage.getItem('userToken');
     const response = await fetch('/api/progress/month', {
       method: 'POST',
       headers: {

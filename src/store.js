@@ -10,9 +10,7 @@ const store = createStore(rootReducer, {
   },
   categoriesList: [],
   addMeasureItem: {},
-  user: {
-    token: localStorage.getItem('userToken') || '',
-  },
+  user: { },
   progress: [],
 });
 

@@ -79,7 +79,7 @@ class AddMeasure extends React.Component {
       value: parseFloat(amountValue) ? parseFloat(amountValue) : 0.00,
       date: dateValue,
       user_id: user.id,
-      ex_cat_id: measureItem.id,
+      expense_category_id: measureItem.id,
     };
 
     expensifyApi.createNewMeasurement(measurementObj)
