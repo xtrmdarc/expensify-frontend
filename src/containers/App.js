@@ -19,13 +19,6 @@ import Login from '../components/Login';
 import SignUp from '../components/SignUp';
 
 class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.loadUserProgress = this.loadUserProgress.bind(this);
-    this.logoutUserApp = this.logoutUserApp.bind(this);
-    this.loginUserApp = this.loginUserApp.bind(this);
-  }
-
   componentDidMount() {
     const { updateCategoriesList, user, loginUser } = this.props;
     const loggedIn = Authentication.isValidLogin(user, loginUser);
@@ -38,7 +31,7 @@ class App extends React.Component {
     this.loadUserProgress();
   }
 
-  loadUserProgress() {
+  loadUserProgress = () => {
     const { user, loadProgress } = this.props;
 
     expensifyApi.getProgress(user.id).then(p => {
@@ -46,13 +39,13 @@ class App extends React.Component {
     });
   }
 
-  logoutUserApp() {
+  logoutUserApp = () => {
     const { logOutUser } = this.props;
     Authentication.logout();
     logOutUser();
   }
 
-  loginUserApp(user) {
+  loginUserApp = user => {
     const { loginUser, updateCategoriesList } = this.props;
     Authentication.loginUser(user.token);
 

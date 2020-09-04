@@ -7,12 +7,9 @@ import expensifyApi from '../api/expensify';
 import ProgressDetailItem from '../components/ProgressDetailItem';
 
 class ProgressDetail extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      progressDetail: [],
-    };
-  }
+  state = {
+    progressDetail: [],
+  };
 
   componentDidMount() {
     const {
