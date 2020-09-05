@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Alata&family=Poppins:wght@300;400;700&display=swap');
+
+$closeSpace: 16px;
+$broadSpace: 32px;
+$brandColor: #34b7e4;
+$brandColorLight: #b1e2f4;
+$darkColor: #598090;
+$veryDarkColor: #313943;
+$accentColor: #92e49c;
+$headerHeight: 60px;
+$footerHeight: 55px;
+$titleFont: 'Alata', sans-serif;
+$textFont: 'Poppins', sans-serif;
+$pageHeaderHeight: 70px;
+$lightGray:#f3f3f3;
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: $textFont;
+  outline: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+.cta {
+  border: none;
+  padding: 8px;
+  font-size: 16px;
+}
+
+@mixin pageTitle() {
+  font-family: $titleFont;
+  font-size: 20px;
+}
+
+@mixin input() {
+  width: 100%;
+  padding: 5px 0;
+  margin-top: 3px;
+}
+
+@mixin formInput() {
+  border: none;
+  background-color: transparent;
+  color: white;
+  border-bottom: 1px solid white;
+}
+
+@mixin cardTwoHalves() {
+  width: calc((100% - (#{$closeSpace} * 4)) / 2);
+  margin: $closeSpace;
+  padding: $closeSpace;
+  border-radius: 8px;
+  height: calc(100vh / 3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(122, 122, 122, 0.199);
+  background-color: white;
+  color: black;
+}
+
+.formLink {
+  color: white;
+  font-size: 12px;
+  text-align: center;
+  margin-top: $closeSpace;
+}

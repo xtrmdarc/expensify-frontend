@@ -1,0 +1,364 @@
+@import './variables';
+
+/* stylelint-disable no-descending-specificity */
+html,
+body {
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  position: relative;
+  height: 100vh;
+  max-height: 720px;
+}
+
+header {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  height: $headerHeight;
+  background-color: $brandColor;
+  color: white;
+  font-weight: 600;
+  box-shadow: 0 3px 4px -1px rgba(99, 99, 99, 0.7);
+  z-index: 1000;
+  position: relative;
+  padding: 0 $closeSpace;
+
+  .pageTitle {
+    font-family: $titleFont;
+    font-size: 20px;
+  }
+
+  .buttonNav {
+    display: block;
+    width: 50px;
+    font-size: 12px;
+    text-align: center;
+    background-color: transparent;
+    border: none;
+    color: white;
+
+    &.hidden {
+      visibility: hidden;
+    }
+  }
+}
+
+#root {
+  height: 100%;
+
+  & > div {
+    height: inherit;
+  }
+}
+
+.contentWrapper {
+  height: calc(100% - #{$headerHeight} - #{$footerHeight});
+  overflow-y: scroll;
+}
+
+.addMeasure {
+  display: flex;
+  flex-direction: column;
+  // background-color: rgb(243, 243, 243);
+  height: 100%;
+
+  .pageHeader {
+    background-color: white;
+    height: $pageHeaderHeight;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: $broadSpace;
+
+    .pageTitle {
+      @include pageTitle();
+
+      font-weight: 400;
+    }
+  }
+
+  .mainContent {
+    display: flex;
+    flex-direction: column;
+    padding: 0 $broadSpace $broadSpace $broadSpace;
+    background-color: white;
+    height: 100%;
+
+    .valueInput {
+      border: none;
+      padding: 2px;
+      font-size: 60px;
+      font-weight: 400;
+      text-align: center;
+      margin-bottom: $broadSpace;
+      font-family: $titleFont;
+
+      &::placeholder {
+        color: rgb(167, 167, 167);
+      }
+    }
+
+    label {
+      font-weight: 800;
+    }
+
+    input[type="date"] {
+      @include input();
+
+      margin-bottom: 5px;
+    }
+
+    .errorSubmission {
+      font-size: 12px;
+      color: rgb(240, 54, 54);
+    }
+
+    .cta {
+      background-color: $accentColor;
+      color: white;
+      margin: auto 0 0 0;
+    }
+  }
+}
+
+.categoriesWrapper {
+  background-color: rgb(243, 243, 243);
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  min-height: 100%;
+
+  .categoryItem {
+    @include cardTwoHalves();
+
+    &:hover {
+      background-color: $brandColor;
+      color: white;
+    }
+
+    .categoryImg {
+      width: 20%;
+      height: 35px;
+      margin-right: $closeSpace;
+      filter: invert(1);
+    }
+
+    .arrowIcon {
+      justify-self: right;
+    }
+
+    span {
+      width: 80%;
+      font-size: 20px;
+      font-weight: 300;
+      text-align: center;
+    }
+  }
+}
+
+footer {
+  width: 100%;
+  height: $footerHeight;
+  display: flex;
+  background-color: $veryDarkColor;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+
+  nav {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+
+    a {
+      width: calc(100% / 2);
+      height: 100%;
+      color: white;
+      text-align: center;
+      font-family: $titleFont;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+
+      span {
+        font-size: 10px;
+        margin-top: 8px;
+        line-height: 8px;
+      }
+
+      &.active {
+        background-color: $brandColor;
+        color: white;
+      }
+    }
+  }
+}
+
+.login {
+  background-color: $brandColor;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .mainContent {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 300px;
+
+    img {
+      height: 50px;
+      margin-bottom: $broadSpace;
+    }
+
+    label {
+      color: white;
+      font-size: 14px;
+      font-family: $titleFont;
+      margin-top: $closeSpace;
+
+      input[type="text"],
+      input[type="password"] {
+        @include input();
+        @include formInput();
+
+        &::placeholder {
+          color: white;
+        }
+      }
+    }
+
+    .errorMessage {
+      display: block;
+      font-size: 12px;
+      margin-top: 4px;
+    }
+
+    .cta {
+      margin-top: $broadSpace;
+      background-color: $accentColor;
+      color: white;
+    }
+  }
+}
+
+.signUp {
+  background-color: $brandColor;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .mainContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    max-width: 300px;
+
+    .signUpTitle {
+      font-size: 25px;
+      margin-bottom: $closeSpace;
+    }
+
+    .errorMessage {
+      align-self: flex-start;
+      font-size: 12px;
+      color: black;
+    }
+
+    label {
+      color: white;
+      font-size: 14px;
+      font-family: $titleFont;
+      margin-top: calc(#{$closeSpace} + 5px);
+      width: 100%;
+
+      input[type="text"],
+      input[type="password"] {
+        @include input();
+        @include formInput();
+
+        &::placeholder {
+          color: white;
+        }
+      }
+    }
+
+    .cta {
+      width: 100%;
+      margin-top: $broadSpace;
+      background-color: $accentColor;
+      color: white;
+    }
+  }
+}
+
+.progress {
+  background-color: $lightGray;
+
+  .titleList {
+    padding: 8px $closeSpace;
+    font-weight: 400;
+    font-size: 14px;
+  }
+
+  .progressItem {
+    padding: $closeSpace;
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(122, 122, 122, 0.199);
+
+    .leftSection {
+      display: flex;
+      flex-direction: column;
+
+      h4 {
+        font-size: $titleFont;
+        font-size: 15px;
+        font-weight: 500;
+      }
+    }
+
+    .rightSection {
+      display: flex;
+      align-items: center;
+
+      .diff {
+        font-weight: 700;
+      }
+
+      .arrowIcon {
+        margin-left: $closeSpace;
+        height: 10px;
+      }
+    }
+  }
+}
+
+.progressDetail {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: $lightGray;
+
+  .progressDetailItem {
+    @include cardTwoHalves();
+
+    flex-direction: column;
+
+    .amountValue {
+      font-size: 30px;
+    }
+  }
+}
+
+/* stylelint-enable no-descending-specificity */
